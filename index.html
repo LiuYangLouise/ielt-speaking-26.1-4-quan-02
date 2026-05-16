@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reborn 雅思口语真题练习 · 2026年1-4月完整题库</title>
+    <title>Reborn 雅思口语真题练习 · 2026年5-8月完整题库</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -87,7 +87,7 @@
             min-width: 600px;
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0,0, 0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             padding: 25px;
             border: 1px solid #d9f0f0;
             display: flex;
@@ -635,9 +635,9 @@
 <body>
     <div class="header">
         <h1 class="main-title">Reborn 雅思口语真题练习</h1>
-        <p class="subtitle">2026年1-4月 · 完整题库 
-            <span class="batch-tag">新增题 (46+)</span> 
-            <span class="batch-tag batch-tag-keep">保留题 (112+)</span> 
+        <p class="subtitle">2026年5-8月 · 完整题库 
+            <span class="batch-tag">新增题 (40+)</span> 
+            <span class="batch-tag batch-tag-keep">保留题 (43+)</span> 
             <span class="batch-tag batch-tag-old">万年老题 (5组)</span>
         </p>
     </div>
@@ -647,10 +647,7 @@
             <div class="search-box">
                 <input type="text" class="search-input" placeholder="🔍 搜索话题关键词... (中英文皆可)" id="searchInput">
             </div>
-            
-            <div class="category-nav" id="categoryNav">
-                <!-- 左侧导航将通过JavaScript动态生成 -->
-            </div>
+            <div class="category-nav" id="categoryNav"></div>
         </div>
         
         <div class="content">
@@ -664,12 +661,8 @@
                 <div class="timer-container">
                     <div class="timer-display" id="timer">01:00</div>
                     <div class="timer-label" id="timer-label">准备时间</div>
-                    <button class="timer-btn" id="start-timer">
-                        <i class="fas fa-play-circle"></i> 开始
-                    </button>
-                    <button class="timer-btn" id="reset-timer">
-                        <i class="fas fa-redo-alt"></i>
-                    </button>
+                    <button class="timer-btn" id="start-timer"><i class="fas fa-play-circle"></i> 开始</button>
+                    <button class="timer-btn" id="reset-timer"><i class="fas fa-redo-alt"></i></button>
                 </div>
             </div>
             
@@ -678,565 +671,130 @@
                     <span>口语话题卡</span>
                     <span id="topic-badge" class="badge-new">新增题</span>
                 </div>
-                <div class="card-content" id="card-content">
-                    <!-- 动态渲染内容 -->
-                </div>
+                <div class="card-content" id="card-content"></div>
             </div>
         </div>
     </div>
     
     <div class="footer">
-        <p>Reborn 雅思口语练习系统 &copy; 2026 · 基于2026年1-4月完整题库 · 新增题+保留题+万年老题 共160+话题</p>
+        <p>Reborn 雅思口语练习系统 &copy; 2026 · 基于2026年5-8月完整题库 · 万年老题 + 保留题(1-4月新增) + 新增题(5-8月) 共90+话题</p>
     </div>
 
     <script>
-        // ==================== 完整题库数据模型 ====================
-        // 整合了所有PDF中的题目，去重并合理分类
-        const topicsData = {
-            // ----- 万年老题 Part 1 (5组，大地色) -----
-            oldPart1: [
-                { id: "old1", title: "Work or studies", batch: "old", part1: { questions: [
-                    "What subjects are you studying?", "Do you like your subject?", "Why did you choose to study that subject?",
-                    "Do you think that your subject is popular in your country?", "Do you have any plans for your studies in the next five years?",
-                    "What are the benefits of being your age?", "Do you want to change your major?", "Do you prefer to study in the mornings or in the afternoons?",
-                    "How much time do you spend on your studies each week?", "Are you looking forward to working?", "What technology do you use when you study?",
-                    "What changes would you like to see in your school?", "What work do you do?", "Why did you choose to do that type of work?",
-                    "Do you like your job?", "What requirements did you need to meet to get your current job?", "Do you have any plans for your work in the next five years?",
-                    "What do you think is the most important at the moment?", "Do you want to change to another job?", "Do you miss being a student?",
-                    "What technology do you use at work?", "Who helps you the most? And how?"
-                ]}},
-                { id: "old2", title: "Hometown", batch: "old", part1: { questions: [
-                    "Where is your hometown?", "Is that a big city or a small place?", "Please describe your hometown a little.",
-                    "How long have you been living there?", "Do you think you will continue living there for a long time?", "Do you like your hometown?",
-                    "Do you like living there?", "What do you like (most) about your hometown?", "Is there anything you dislike about it?",
-                    "What's your hometown famous for?", "Did you learn about the history of your hometown at school?", "Are there many young people in your hometown?",
-                    "Is your hometown a good place for young people to pursue their careers?", "Have you learned anything about the history of your hometown?",
-                    "Did you learn about the culture of your hometown in your childhood?"
-                ]}},
-                { id: "old3", title: "Home / Accommodation", batch: "old", part1: { questions: [
-                    "What kind of house or apartment do you want to live in in the future?", "Are the transport facilities to your home very good?",
-                    "Do you prefer living in a house or an apartment?", "Please describe the room you live in.", "What part of your home do you like the most?",
-                    "How long have you lived there?", "Do you plan to live there for a long time?", "What's the difference between where you are living now and where you have lived in the past?",
-                    "Can you describe the place where you live?", "What room does your family spend most of the time in?", "What's your favorite room in your apartment or house?",
-                    "What makes you feel pleasant in your home?", "Do you think it is important to live in a comfortable environment?", "Do you live in an apartment or a house?",
-                    "Who do you live with?", "What do you usually do in your apartment?", "What kinds of accommodation do you live in?"
-                ]}},
-                { id: "old4", title: "Your area / Neighbors", batch: "old", part1: { questions: [
-                    "Do you like the area that you live in?", "Where do you like to go in that area?", "Do you know any famous people in your area?",
-                    "What are some changes in the area recently?", "Do you know any of your neighbors?", "Are the people in your neighborhood nice and friendly?",
-                    "Do you live in a noisy or a quiet area?"
-                ]}},
-                { id: "old5", title: "The city you live in", batch: "old", part1: { questions: [
-                    "What city do you live in?", "Do you like this city? Why?", "How long have you lived in this city?", "Are there big changes in this city?",
-                    "Is this city your permanent residence?", "Are there people of different ages living in this city?", "Are the people friendly in the city?",
-                    "Is the city friendly to children and old people?", "Do you often see your neighbors?", "What's the weather like where you live?",
-                    "Would you recommend your city to others?"
-                ]}}
-            ],
+        // ==================== 题库数据 ====================
+        
+        // ----- 万年老题 Part 1 (不变) -----
+        const oldPart1 = [
+            { id: "old1", title: "Work or studies", batch: "old", part1: { questions: ["What subjects are you studying?", "Do you like your subject?", "Why did you choose to study that subject?", "Do you think that your subject is popular in your country?", "Do you have any plans for your studies in the next five years?", "What are the benefits of being your age?", "Do you want to change your major?", "Do you prefer to study in the mornings or in the afternoons?", "How much time do you spend on your studies each week?", "Are you looking forward to working?", "What technology do you use when you study?", "What changes would you like to see in your school?", "What work do you do?", "Why did you choose to do that type of work?", "Do you like your job?", "What requirements did you need to meet to get your current job?", "Do you have any plans for your work in the next five years?", "What do you think is the most important at the moment?", "Do you want to change to another job?", "Do you miss being a student?", "What technology do you use at work?", "Who helps you the most? And how?"] } },
+            { id: "old2", title: "Hometown", batch: "old", part1: { questions: ["Where is your hometown?", "Is that a big city or a small place?", "Please describe your hometown a little.", "How long have you been living there?", "Do you think you will continue living there for a long time?", "Do you like your hometown?", "Do you like living there?", "What do you like (most) about your hometown?", "Is there anything you dislike about it?", "What's your hometown famous for?", "Did you learn about the history of your hometown at school?", "Are there many young people in your hometown?", "Is your hometown a good place for young people to pursue their careers?", "Have you learned anything about the history of your hometown?", "Did you learn about the culture of your hometown in your childhood?"] } },
+            { id: "old3", title: "Home / Accommodation", batch: "old", part1: { questions: ["What kind of house or apartment do you want to live in in the future?", "Are the transport facilities to your home very good?", "Do you prefer living in a house or an apartment?", "Please describe the room you live in.", "What part of your home do you like the most?", "How long have you lived there?", "Do you plan to live there for a long time?", "What's the difference between where you are living now and where you have lived in the past?", "Can you describe the place where you live?", "What room does your family spend most of the time in?", "What's your favorite room in your apartment or house?", "What makes you feel pleasant in your home?", "Do you think it is important to live in a comfortable environment?", "Do you live in an apartment or a house?", "Who do you live with?", "What do you usually do in your apartment?", "What kinds of accommodation do you live in?"] } },
+            { id: "old4", title: "Your area / Neighbors", batch: "old", part1: { questions: ["Do you like the area that you live in?", "Where do you like to go in that area?", "Do you know any famous people in your area?", "What are some changes in the area recently?", "Do you know any of your neighbors?", "Are the people in your neighborhood nice and friendly?", "Do you live in a noisy or a quiet area?"] } },
+            { id: "old5", title: "The city you live in", batch: "old", part1: { questions: ["What city do you live in?", "Do you like this city? Why?", "How long have you lived in this city?", "Are there big changes in this city?", "Is this city your permanent residence?", "Are there people of different ages living in this city?", "Are the people friendly in the city?", "Is the city friendly to children and old people?", "Do you often see your neighbors?", "What's the weather like where you live?", "Would you recommend your city to others?"] } }
+        ];
 
-            // ----- Part 1 新增题 (绿色) -----
-            part1New: [
-                { id: "p1n1", title: "Life stages", batch: "new", part1: { questions: [
-                    "What did you often do with your friends in your childhood?", "What do you think is the most important at the moment?",
-                    "Do you have any plans for the next five years?", "How do people remember each stage of their lives?",
-                    "Do you enjoy being the age you are now?", "At what age do you think people are the happiest?"
-                ]}},
-                { id: "p1n2", title: "Views", batch: "new", part1: { questions: [
-                    "Do you like taking pictures of different views?", "Do you prefer views in urban areas or rural areas?",
-                    "Do you prefer views in your country or in other countries?"
-                ]}},
-                { id: "p1n3", title: "Scenery", batch: "new", part1: { questions: [
-                    "Do you look out the window at the scenery when travelling by bus or car?", "Do you prefer the mountains or the sea?",
-                    "Do you like to take scenery pictures?", "What are the most beautiful sights you have seen while travelling?"
-                ]}},
-                { id: "p1n4", title: "Building", batch: "new", part1: { questions: [
-                    "Are there tall buildings near your home?", "Do you take photos of buildings?", "Is there a building that you would like to visit?",
-                    "Do you want to live in a tall building?"
-                ]}},
-                { id: "p1n5", title: "Childhood activities", batch: "new", part1: { questions: [
-                    "What were your favourite activities when you were a child?", "Did you prefer to do activities alone or with a group of people when you were a child?"
-                ]}},
-                { id: "p1n6", title: "Typing", batch: "new", part1: { questions: [
-                    "Do you prefer typing or handwriting?", "Do you type on a desktop or laptop keyboard every day?",
-                    "When did you learn how to type on a keyboard?", "How do you improve your typing?"
-                ]}},
-                { id: "p1n7", title: "Hobby", batch: "new", part1: { questions: [
-                    "Do you have any hobbies?", "Did you have any hobbies when you were a child?",
-                    "Do you have a hobby that you've had since childhood?", "Do you have the same hobbies as your family members?"
-                ]}},
-                { id: "p1n8", title: "Morning time", batch: "new", part1: { questions: [
-                    "Do you like getting up early in the morning?", "What do you usually do in the morning?",
-                    "What did you do in the morning when you were little? Why?", "Are there any differences between what you do in the morning now and what you did in the past?",
-                    "Do you spend your mornings doing the same things on both weekends and weekdays? Why?"
-                ]}},
-                { id: "p1n9", title: "Gifts", batch: "new", part1: { questions: [
-                    "Have you ever sent handmade gifts to others?", "Have you ever received a great gift?", "What do you consider when choosing a gift?",
-                    "Do you think you are good at choosing gifts?", "What gift have you received recently?"
-                ]}},
-                { id: "p1n10", title: "Reading", batch: "new", part1: { questions: [
-                    "Do you like reading?", "Do you prefer to read on paper or on a screen?", "When do you need to read carefully, and when not?",
-                    "Do you prefer scanning or detailed reading?"
-                ]}},
-                { id: "p1n11", title: "Walking", batch: "new", part1: { questions: [
-                    "Do you walk a lot?", "Did you often go outside to have a walk when you were a child?", "Why do people like to walk in parks?",
-                    "Where would you like to take a long walk if you had the chance?", "Where did you go for a walk lately?"
-                ]}},
-                { id: "p1n12", title: "Dreams", batch: "new", part1: { questions: [
-                    "Can you remember the dreams you had?", "Do you share your dreams with others?", "Do you think dreams have special meanings?",
-                    "Do you want to make your dreams come true?"
-                ]}},
-                { id: "p1n13", title: "Keys", batch: "new", part1: { questions: [
-                    "Do you always bring a lot of keys with you?", "Have you ever lost your keys?", "Do you often forget the keys and lock yourself out?",
-                    "Do you think it's a good idea to leave your keys with a neighbour?"
-                ]}},
-                { id: "p1n14", title: "Sports team", batch: "new", part1: { questions: [
-                    "Have you ever been part of a sports team?", "Are team sports popular in your culture?", "Do you like watching team games? Why?",
-                    "What are the differences between team sports and individual sports?"
-                ]}},
-                { id: "p1n15", title: "Pets and animals", batch: "new", part1: { questions: [
-                    "What's your favourite animals? Why?", "Where do you prefer to keep your pet, indoors or outdoors?",
-                    "Have you ever had a pet before?", "What is the most popular animal in China?"
-                ]}},
-                { id: "p1n16", title: "Food", batch: "new", part1: { questions: [
-                    "What is your favourite food?", "What kind of food did you like when you were young?",
-                    "Do you eat different foods at different times of the year?", "Has your favourite food changed since you were a child?"
-                ]}},
-                { id: "p1n17", title: "Day off", batch: "new", part1: { questions: [
-                    "When was the last time you had a few days off?", "What do you usually do when you have days off?",
-                    "Do you usually spend your days off with your parents or with your friends?", "What would you like to do if you had a day off tomorrow?"
-                ]}}
-            ],
+        // ----- Part 1 保留题 (来自1-4月新增题) -----
+        const part1Keep = [
+            { id: "p1k1", title: "Life stages", batch: "keep", part1: { questions: ["What did you often do with your friends in your childhood?", "What do you think is the most important at the moment?", "Do you have any plans for the next five years?", "How do people remember each stage of their lives?", "Do you enjoy being the age you are now?", "At what age do you think people are the happiest?"] } },
+            { id: "p1k2", title: "Views", batch: "keep", part1: { questions: ["Do you like taking pictures of different views?", "Do you prefer views in urban areas or rural areas?", "Do you prefer views in your country or in other countries?"] } },
+            { id: "p1k3", title: "Scenery", batch: "keep", part1: { questions: ["Do you look out the window at the scenery when travelling by bus or car?", "Do you prefer the mountains or the sea?", "Do you like to take scenery pictures?", "What are the most beautiful sights you have seen while travelling?"] } },
+            { id: "p1k4", title: "Building", batch: "keep", part1: { questions: ["Are there tall buildings near your home?", "Do you take photos of buildings?", "Is there a building that you would like to visit?", "Do you want to live in a tall building?"] } },
+            { id: "p1k5", title: "Childhood activities", batch: "keep", part1: { questions: ["What were your favourite activities when you were a child?", "Did you prefer to do activities alone or with a group of people when you were a child?"] } },
+            { id: "p1k6", title: "Typing", batch: "keep", part1: { questions: ["Do you prefer typing or handwriting?", "Do you type on a desktop or laptop keyboard every day?", "When did you learn how to type on a keyboard?", "How do you improve your typing?"] } },
+            { id: "p1k7", title: "Hobby", batch: "keep", part1: { questions: ["Do you have any hobbies?", "Did you have any hobbies when you were a child?", "Do you have a hobby that you've had since childhood?", "Do you have the same hobbies as your family members?"] } },
+            { id: "p1k8", title: "Morning time", batch: "keep", part1: { questions: ["Do you like getting up early in the morning?", "What do you usually do in the morning?", "What did you do in the morning when you were little? Why?", "Are there any differences between what you do in the morning now and what you did in the past?", "Do you spend your mornings doing the same things on both weekends and weekdays? Why?"] } },
+            { id: "p1k9", title: "Gifts", batch: "keep", part1: { questions: ["Have you ever sent handmade gifts to others?", "Have you ever received a great gift?", "What do you consider when choosing a gift?", "Do you think you are good at choosing gifts?", "What gift have you received recently?"] } },
+            { id: "p1k10", title: "Reading", batch: "keep", part1: { questions: ["Do you like reading?", "Do you prefer to read on paper or on a screen?", "When do you need to read carefully, and when not?", "Do you prefer scanning or detailed reading?"] } },
+            { id: "p1k11", title: "Walking", batch: "keep", part1: { questions: ["Do you walk a lot?", "Did you often go outside to have a walk when you were a child?", "Why do people like to walk in parks?", "Where would you like to take a long walk if you had the chance?", "Where did you go for a walk lately?"] } },
+            { id: "p1k12", title: "Dreams", batch: "keep", part1: { questions: ["Can you remember the dreams you had?", "Do you share your dreams with others?", "Do you think dreams have special meanings?", "Do you want to make your dreams come true?"] } },
+            { id: "p1k13", title: "Sports team", batch: "keep", part1: { questions: ["Have you ever been part of a sports team?", "Are team sports popular in your culture?", "Do you like watching team games? Why?", "What are the differences between team sports and individual sports?"] } },
+            { id: "p1k14", title: "Pets and animals", batch: "keep", part1: { questions: ["What's your favourite animals? Why?", "Where do you prefer to keep your pet, indoors or outdoors?", "Have you ever had a pet before?", "What is the most popular animal in China?"] } },
+            { id: "p1k15", title: "Food", batch: "keep", part1: { questions: ["What is your favourite food?", "What kind of food did you like when you were young?", "Do you eat different foods at different times of the year?", "Has your favourite food changed since you were a child?"] } },
+            { id: "p1k16", title: "Day off", batch: "keep", part1: { questions: ["When was the last time you had a few days off?", "What do you usually do when you have days off?", "Do you usually spend your days off with your parents or with your friends?", "What would you like to do if you had a day off tomorrow?"] } },
+            { id: "p1k17", title: "Art", batch: "keep", part1: { questions: ["Do you like art?", "Do you like visiting art galleries?", "Do you want to be an artist?", "Do you like modern art or traditional art?"] } }
+        ];
 
-            // ----- Part 1 保留题 (暖黄色) -----
-            part1Keep: [
-                { id: "p1k1", title: "Bikes", batch: "keep", part1: { questions: [
-                    "Did you have a bike when you were young?", "Do you have a bike now?", "Do you often ride a bike now?",
-                    "Are bikes popular in China?", "Did you ride a bike when you were little?"
-                ]}},
-                { id: "p1k2", title: "Coins", batch: "keep", part1: { questions: [
-                    "Do you often carry coins with you?", "Have you ever collected coins?", "Is it convenient to use coins?",
-                    "Do you use coins in your daily life?", "Did you use coins as a child?"
-                ]}},
-                { id: "p1k3", title: "Roads and streets", batch: "keep", part1: { questions: [
-                    "Are the roads and streets in the area where you live busy?", "How do people cross the road in the city where you live?",
-                    "What is the condition of the roads in your city like?", "Do you think the roads in your city need improvement?",
-                    "Are there any famous roads or streets in your country?"
-                ]}},
-                { id: "p1k4", title: "Laughing", batch: "keep", part1: { questions: [
-                    "Do you enjoy watching interesting and funny movies?", "Do you think you are a funny person?",
-                    "Are you a person who often makes others laugh?", "Do you always laugh at funny things?",
-                    "When was the last time you laughed?"
-                ]}},
-                { id: "p1k5", title: "Fishing", batch: "keep", part1: { questions: [
-                    "Is fishing popular in your country?", "Do you like eating fish?", "Have you ever been fishing?",
-                    "Do you think fishing is interesting?"
-                ]}},
-                { id: "p1k6", title: "Teachers", batch: "keep", part1: { questions: [
-                    "Do you have a favourite teacher?", "In what way has your favourite teacher helped you?",
-                    "Do you have a teacher from your past that you still remember?", "Are you still in touch with your primary school teachers?",
-                    "Do you want to be a teacher in the future?"
-                ]}},
-                { id: "p1k7", title: "Place of work/study", batch: "keep", part1: { questions: [
-                    "Do you prefer to study at home or in a library?", "What is your favourite place to study?",
-                    "What part of your school do you like the most?", "Do you prefer to work at home or in the workplace?",
-                    "Do you prefer to work alone or in a group?"
-                ]}},
-                { id: "p1k8", title: "Perfume", batch: "keep", part1: { questions: [
-                    "Do you like perfume?", "Do you use perfume?", "Where do you spray perfume?",
-                    "Do you send perfume to others as a gift?", "Do you spend a lot of money on buying perfume?"
-                ]}},
-                { id: "p1k9", title: "Good view", batch: "keep", part1: { questions: [
-                    "What is the view like around the place where you live?", "Have you seen an unforgettable and beautiful view or scenery?",
-                    "Would you take photos when you see a good view?", "What is your favourite place? Why?",
-                    "Is there plastic pollution around the place where you live?"
-                ]}},
-                { id: "p1k10", title: "Teamwork", batch: "keep", part1: { questions: [
-                    "Do you like teamwork?", "Have you teamed up with someone else before?", "What do you learn from working in a team?",
-                    "What do you dislike about teamwork?"
-                ]}},
-                { id: "p1k11", title: "Meet new friends", batch: "keep", part1: { questions: [
-                    "Do you like making friends?", "Did you make a lot of friends when you were a child?", "Have you made any new friends recently?",
-                    "What do you often talk about with your new friends?", "Do you like meeting new people?", "Where can you meet new people?",
-                    "Do you enjoy talking to new people?", "Do you meet new people more often now than in the past?"
-                ]}},
-                { id: "p1k12", title: "Swimming", batch: "keep", part1: { questions: [
-                    "Do you like swimming?", "Is it difficult to learn how to swim?", "Where do people in your country like to go swimming?",
-                    "What's the difference between swimming in the pool and swimming in the sea?"
-                ]}},
-                { id: "p1k13", title: "Mobile phone", batch: "keep", part1: { questions: [
-                    "What was your first mobile phone?", "Do you often use your mobile phone for texting or calls?",
-                    "Will you buy a new one in the future?", "How has your mobile phone changed your life?"
-                ]}},
-                { id: "p1k14", title: "Evening time", batch: "keep", part1: { questions: [
-                    "Do you like the morning or evening?", "What do you usually do in the evening?",
-                    "What did you do in the evening when you were little? Why?", "Are there any differences between what you do in the evening now and what you did in the past?",
-                    "Do you spend your evenings doing the same things on both weekends and weekdays? Why?", "What do you hate doing in the evening?"
-                ]}},
-                { id: "p1k15", title: "Feeling bored", batch: "keep", part1: { questions: [
-                    "Do you often feel bored?", "When would you feel bored?", "What do you do when you feel bored?",
-                    "Do you think childhood is boring or adulthood is boring?"
-                ]}},
-                { id: "p1k16", title: "Computers/tablets", batch: "keep", part1: { questions: [
-                    "Would you like to use a computer or tablet?", "In what conditions would you use a computer or tablet?",
-                    "When was the first time you used a computer or tablet?", "What would your life be like without computers or tablets?",
-                    "In what conditions would it be difficult for you to use a computer or tablet?"
-                ]}},
-                { id: "p1k17", title: "Talents", batch: "keep", part1: { questions: [
-                    "Do you have a talent or something you are good at?", "Was it mastered recently or when you were young?",
-                    "Do you think your talent can be useful for your future work? Why?", "Do you think anyone in your family has the same talent?"
-                ]}},
-                { id: "p1k18", title: "Mirrors", batch: "keep", part1: { questions: [
-                    "Do you like looking at yourself in the mirror? How often?", "Have you ever bought mirrors?",
-                    "Do you usually take a mirror with you?", "Would you use mirrors to decorate your room?"
-                ]}},
-                { id: "p1k19", title: "Old buildings", batch: "keep", part1: { questions: [
-                    "Have you ever seen old buildings in the city?", "Do you think we should preserve old buildings in cities?",
-                    "Do you prefer living in an old building or a modern house?", "Are there any old buildings you want to see in the future? Why?"
-                ]}},
-                { id: "p1k20", title: "Lost and found", batch: "keep", part1: { questions: [
-                    "What will you do if you find something lost by others?", "Do you report to the police when finding something lost by others? Why?",
-                    "Have you ever lost things?", "Will you post on social media if you lose your item?", "Have you ever lost your keys?"
-                ]}},
-                { id: "p1k21", title: "Emails", batch: "keep", part1: { questions: [
-                    "Do you often send emails?", "When would you send emails to others?", "Is sending emails popular in China?",
-                    "Do you think sending emails will be more or less popular in the future?"
-                ]}},
-                { id: "p1k22", title: "Advertisement", batch: "keep", part1: { questions: [
-                    "Is there an advertisement that made an impression on you when you were a child?",
-                    "Do you see a lot of advertising on trains or other transport?", "Do you like advertisements?",
-                    "What kind of advertising do you like?"
-                ]}},
-                { id: "p1k23", title: "Taking photos", batch: "keep", part1: { questions: [
-                    "Do you like taking photos?", "Do you like taking selfies?", "What is your favourite family photo?",
-                    "Do you want to improve your photography skills?"
-                ]}},
-                { id: "p1k24", title: "Cars", batch: "keep", part1: { questions: [
-                    "Did you enjoy traveling by car when you were a kid?", "What types of cars do you like?",
-                    "Do you prefer to be a driver or a passenger?", "What do you usually do when there is a traffic jam?",
-                    "Do you think car colours are important?"
-                ]}},
-                { id: "p1k25", title: "Street Market", batch: "keep", part1: { questions: [
-                    "Are there many street markets in China?", "When was the last time you went to a street market?",
-                    "Do you prefer to go shopping in the shopping mall or on the street market?",
-                    "What do people usually buy on the street market?"
-                ]}},
-                { id: "p1k26", title: "Websites", batch: "keep", part1: { questions: [
-                    "What kinds of websites do you often visit?", "What is your favourite website?",
-                    "Are there any changes to the websites you often visit?", "What kinds of websites are popular in your country?"
-                ]}},
-                { id: "p1k27", title: "Watch", batch: "keep", part1: { questions: [
-                    "Do you wear a watch?", "Have you ever got a watch as a gift?", "Why do some people wear expensive watches?",
-                    "Do you think it is important to wear a watch? Why?"
-                ]}},
-                { id: "p1k28", title: "Time management", batch: "keep", part1: { questions: [
-                    "How do you plan your time in a day?", "Is it easy to manage time for you?", "When do you find it hard to allocate time?",
-                    "Do you like being busy?"
-                ]}},
-                { id: "p1k29", title: "Books and reading habits", batch: "keep", part1: { questions: [
-                    "Do you often read books? When?", "Are your reading habits now different than before?",
-                    "Have you ever read a novel that has been adapted into a film?", "Which do you prefer, reading books or watching movies?",
-                    "Do you read more or less now than when you were younger?", "Do you often buy books?"
-                ]}},
-                { id: "p1k30", title: "Collecting things", batch: "keep", part1: { questions: [
-                    "Do you collect things?", "Are there any things you have kept from your childhood?",
-                    "Would you keep old things for a long time? Why?", "Where do you usually keep things you need?"
-                ]}},
-                { id: "p1k31", title: "Sitting down", batch: "keep", part1: { questions: [
-                    "Where is your favorite place to sit?", "Do you always sit down for a long time?",
-                    "Do you feel sleepy when you are sitting down?", "When you were a kid, did you usually sit on the floor?",
-                    "Do you find it easy to fall asleep when sitting on a sofa?"
-                ]}},
-                { id: "p1k32", title: "Friends", batch: "keep", part1: { questions: [
-                    "Do you have many friends?", "How often do you meet your friends?", "What do you usually do with your friends?",
-                    "Do you prefer to spend time with one friend or with a group of friends?"
-                ]}},
-                { id: "p1k33", title: "Art/drawing", batch: "keep", part1: { questions: [
-                    "Do you like drawing?", "Did you draw a lot when you were a child?", "Do you often go to art galleries?",
-                    "Do you think art is important for children?"
-                ]}},
-                { id: "p1k34", title: "Sports programs", batch: "keep", part1: { questions: [
-                    "Do you like watching sports programs?", "What kind of sports programs do you like?",
-                    "Do you prefer watching sports live or on TV?", "Do you play any sports yourself?"
-                ]}},
-                { id: "p1k35", title: "Hobby", batch: "keep", part1: { questions: [
-                    "Do you have a hobby?", "When did you start this hobby?", "How much time do you spend on your hobby?",
-                    "Do you think hobbies are important?"
-                ]}},
-                { id: "p1k36", title: "Science", batch: "keep", part1: { questions: [
-                    "Do you like science?", "What is the most interesting science subject for you?",
-                    "Do you often watch science programs?", "Do Chinese people often visit science museums?"
-                ]}},
-                { id: "p1k37", title: "Daily routine", batch: "keep", part1: { questions: [
-                    "Do you often go to bed late or early?", "What is your daily study routine?",
-                    "Have you ever changed your routine?", "Do you think it is important to have a daily routine for your study?",
-                    "What part of your day do you like best?"
-                ]}},
-                { id: "p1k38", title: "Doing sports", batch: "keep", part1: { questions: [
-                    "What sports do you like?", "Where did you learn how to do it?", "Did you do some sports when you were young?",
-                    "Do you think students need more exercise?", "Do you know any schoolmates who are good at sports?",
-                    "Do you think it is important for people to exercise?", "Should schools encourage young students to take more physical exercise?",
-                    "What exercise did you do as a kid that you don't do anymore?"
-                ]}},
-                { id: "p1k39", title: "Childhood memory", batch: "keep", part1: { questions: [
-                    "What did you enjoy doing as a child?", "Did you enjoy your childhood?", "What are your best childhood memories?",
-                    "Do you think it is better for children to grow up in the city or in the countryside?",
-                    "Where did you go to play as a child?", "Who did you like to play with as a child?"
-                ]}},
-                { id: "p1k40", title: "Morning routines", batch: "keep", part1: { questions: [
-                    "What do you do in the mornings?", "Is breakfast important?", "What is your morning routine?",
-                    "Do you like to get up early in the morning?"
-                ]}},
-                { id: "p1k41", title: "Staying at home", batch: "keep", part1: { questions: [
-                    "Are you a person who likes to stay at home?", "What do you do when you stay at home?",
-                    "What is your favourite place at home?", "What did you often do at home as a child?",
-                    "Would you like to stay at home a lot in the future?", "What do you like to do in your free time when you're at home?"
-                ]}},
-                { id: "p1k42", title: "Films/cinemas", batch: "keep", part1: { questions: [
-                    "What films do you like?", "Did you often watch films when you were a child?",
-                    "Did you ever go to the cinema alone as a child?", "Do you often go to the cinema with your friends?",
-                    "Do you think going to the cinema is a good way to spend time with friends?", "How often do you watch films?",
-                    "Do you prefer to watch films at home or in the cinema?"
-                ]}},
-                { id: "p1k43", title: "Music/Musical instruments", batch: "keep", part1: { questions: [
-                    "Have you ever learned to play a musical instrument?", "What musical instruments do you enjoy listening to the most?",
-                    "Do you think children should learn to play an instrument at school?", "Do you think music education is important to children?",
-                    "Do a lot of people like music?", "Do schools in your country have music lessons?"
-                ]}},
-                { id: "p1k44", title: "Weekends", batch: "keep", part1: { questions: [
-                    "Do you do the same things every weekend?", "Has your weekend routine changed?", "Do you like weekends?",
-                    "What do you usually do on weekends?", "Do you study or work?", "What did you do last weekend?",
-                    "Do you make plans for your weekends?"
-                ]}},
-                { id: "p1k45", title: "Social media", batch: "keep", part1: { questions: [
-                    "When did you start using social media?", "Do you think you spend too much time on social media?",
-                    "Do your friends use social media?", "What do people often do on social media?"
-                ]}},
-                { id: "p1k46", title: "Plants", batch: "keep", part1: { questions: [
-                    "Do you keep plants at home?", "What plant did you grow when you were young?",
-                    "Do you know anything about growing a plant?", "Do Chinese people send plants as gifts?"
-                ]}},
-                { id: "p1k47", title: "Art", batch: "keep", part1: { questions: [
-                    "Do you like art?", "Do you like visiting art galleries?", "Do you want to be an artist?",
-                    "Do you like modern art or traditional art?"
-                ]}},
-                { id: "p1k48", title: "Carrying things", batch: "keep", part1: { questions: [
-                    "What do you often carry with you?", "What do you do if your item is heavy?"
-                ]}},
-                { id: "p1k49", title: "Quiet/noisy places", batch: "keep", part1: { questions: [
-                    "Do you like quiet or noisy places?", "Would you like to go to quiet or noisy places on weekends when you are free?"
-                ]}},
-                { id: "p1k50", title: "Public places", batch: "keep", part1: { questions: [
-                    "Have you ever talked with someone you don't know in public places?", "Do you wear headphones in public places?",
-                    "Would you like to see more public places near where you live?", "Do you often go to public places with your friends?"
-                ]}},
-                { id: "p1k51", title: "Rules", batch: "keep", part1: { questions: [
-                    "Are there any rules for students at your school?", "Do you think students would benefit more from more rules?",
-                    "Have you ever had a really dedicated teacher?", "Do you prefer to have more or fewer rules at school?"
-                ]}},
-                { id: "p1k52", title: "Shoes", batch: "keep", part1: { questions: [
-                    "Do you like buying shoes? How often?", "Have you ever bought shoes online?",
-                    "How much money do you usually spend on shoes?", "Which do you prefer, fashionable shoes or comfortable shoes?"
-                ]}},
-                { id: "p1k53", title: "Doing something well", batch: "keep", part1: { questions: [
-                    "Do you have an experience that you did something well?", "Do you have an experience that your teacher thought you did a good job?",
-                    "Do you often tell your friends when they do something well?"
-                ]}},
-                { id: "p1k54", title: "Staying with old people", batch: "keep", part1: { questions: [
-                    "Have you ever worked with old people?", "Are you happy to work with people who are older than you?",
-                    "What are the benefits of being friends or working with old people?", "Do you enjoy spending time with old people?"
-                ]}},
-                { id: "p1k55", title: "Going out", batch: "keep", part1: { questions: [
-                    "Do you bring food or snacks with you when going out?", "Do you always take your mobile phone with you when going out?",
-                    "Do you often bring cash with you when going out?", "How often do you use cash?"
-                ]}},
-                { id: "p1k56", title: "Crowded place", batch: "keep", part1: { questions: [
-                    "Is the city where you live crowded?", "Is there a crowded place near where you live?",
-                    "Do you like crowded places?", "Do most people like crowded places?",
-                    "When was the last time you were in a crowded place?"
-                ]}},
-                { id: "p1k57", title: "Growing vegetables", batch: "keep", part1: { questions: [
-                    "Are you interested in growing vegetables and fruits?", "Is growing vegetables popular in your country?",
-                    "Do many people grow vegetables in your city?", "Do you think it's easy to grow vegetables?",
-                    "Should schools teach students how to grow vegetables?"
-                ]}},
-                { id: "p1k58", title: "Chatting", batch: "keep", part1: { questions: [
-                    "Do you like chatting with friends?", "What do you usually chat about with friends?",
-                    "Do you prefer to chat with a group of people or with only one friend?",
-                    "Do you prefer to communicate face-to-face or via social media?", "Do you argue with friends?"
-                ]}},
-                { id: "p1k59", title: "Borrowing/lending", batch: "keep", part1: { questions: [
-                    "Have you borrowed books from others?", "Have you ever borrowed money from others?",
-                    "Do you like to lend things to others?", "How do you feel when people don't return things they borrowed from you?"
-                ]}},
-                { id: "p1k60", title: "Museum", batch: "keep", part1: { questions: [
-                    "Do you think museums are important?", "Are there many museums in your hometown?",
-                    "Do you often visit a museum?", "When was the last time you visited a museum?"
-                ]}},
-                { id: "p1k61", title: "Having a break", batch: "keep", part1: { questions: [
-                    "How often do you take a rest or a break?", "What do you usually do when you are resting?",
-                    "Do you take a nap when you are taking your rest?", "How do you feel after taking a nap?"
-                ]}},
-                { id: "p1k62", title: "Sharing", batch: "keep", part1: { questions: [
-                    "Did your parents teach you to share when you were a child?", "What kind of things do you like to share with others?",
-                    "What kind of things are not suitable for sharing?", "Do you have anything to share with others recently?",
-                    "Who is the first person you would like to share good news with?", "What kind of news do you share with your friends?"
-                ]}},
-                { id: "p1k63", title: "Dream job", batch: "keep", part1: { questions: [
-                    "What was your dream job when you were young?", "How did you change your mind on your dream job?",
-                    "What do you plan to do in the future?", "What kinds of jobs are popular in China?",
-                    "Have you had a full-time or part-time job before?"
-                ]}}
-            ],
+        // ----- Part 1 新增题 (5-8月新题) -----
+        const part1New = [
+            { id: "p1n1", title: "Music", batch: "new", part1: { questions: ["Do you prefer sad or happy music?", "Does happy music make you feel more excited?"] } },
+            { id: "p1n2", title: "Teachers", batch: "new", part1: { questions: ["Do you have a favorite teacher?", "Do you want to be a teacher in the future?", "Do you have a teacher from your past that you still remember?", "Are you still in touch with your primary school teachers?", "In what way has your favourite teacher helped you?"] } },
+            { id: "p1n3", title: "Social media", batch: "new", part1: { questions: ["Have you ever posted anything on social media?", "When did you start using social media?", "Do you think you spend too much time on social media?", "Do your friends use social media?", "What do people often do on social media?"] } },
+            { id: "p1n4", title: "Tidiness", batch: "new", part1: { questions: ["Do you like to keep things tidy?", "Did you use to keep your room tidy as a child?"] } },
+            { id: "p1n5", title: "Websites", batch: "new", part1: { questions: ["What kinds of websites do you often visit?", "What is your favourite website?", "Are there any changes to the websites you often visit?", "What kinds of websites are popular in your country?"] } },
+            { id: "p1n6", title: "Watch", batch: "new", part1: { questions: ["Do you wear a watch?", "Have you ever got a watch as a gift?", "Why do some people wear expensive watches?", "Do you think it is important to wear a watch? Why?"] } },
+            { id: "p1n7", title: "Shopping", batch: "new", part1: { questions: ["Do you like shopping?", "How often do you go shopping?", "Do you prefer online shopping or in-store shopping?"] } },
+            { id: "p1n8", title: "Cars", batch: "new", part1: { questions: ["Did you enjoy traveling by car when you were a kid?", "What types of cars do you like?", "Do you prefer to be a driver or a passenger?", "What do you usually do when there is a traffic jam?", "Do you think car colours are important?"] } },
+            { id: "p1n9", title: "Parks", batch: "new", part1: { questions: ["Did you like going to parks as a child?", "Do you still like going to parks now?", "Would you like to see more parks in your city?", "Are there any parks you want to go to in the future?"] } },
+            { id: "p1n10", title: "Science", batch: "new", part1: { questions: ["Do you like science?", "When did you start to learn about science?", "Which science subject is interesting to you?", "What kinds of interesting things have you done with science?", "Do you like watching science TV programs?", "Do Chinese people often visit science museums?"] } },
+            { id: "p1n11", title: "Mirrors", batch: "new", part1: { questions: ["Do you like looking at yourself in the mirror? How often?", "Have you ever bought mirrors?", "Do you usually take a mirror with you?", "Would you use mirrors to decorate your room?"] } },
+            { id: "p1n12", title: "Outer space and stars", batch: "new", part1: { questions: ["Have you ever learnt about outer space and stars?", "Do you like science fiction movies? Why?", "Do you want to know more about outer space?", "Do you want to go into outer space in the future?"] } },
+            { id: "p1n13", title: "Singing", batch: "new", part1: { questions: ["Do you like singing? Why?", "Have you ever learnt how to sing?", "Who do you want to sing for?", "Do you think singing can bring happiness to people?"] } },
+            { id: "p1n14", title: "Clothing", batch: "new", part1: { questions: ["What kind of clothes do you like to wear?", "Do you prefer to wear comfortable and casual clothes or smart clothes?", "Do you like wearing T-shirts?", "Do you spend a lot of time choosing clothes?"] } },
+            { id: "p1n15", title: "Jokes & Comedies", batch: "new", part1: { questions: ["Are you good at telling jokes?", "Do your friends like to tell jokes?", "Do you like to watch comedies?", "Have you ever watched a live show?"] } },
+            { id: "p1n16", title: "Headphones", batch: "new", part1: { questions: ["Do you use headphones?", "What type of headphones do you use?", "When would you use headphones?", "In what conditions would you not use headphones?"] } }
+        ];
 
-            // ----- Part 2&3 新增题 (人物类) 保留原样 -----
-            peopleNew: [
-                { id: "peopleNew1", title: "鼓励别人做不愿做的事", batch: "new", part2: { instruction: "Describe a time when you encouraged someone to do something that he/she didn't want to do.", youShouldSay: ["Who he or she is", "What you encouraged him/her to do", "How he/she reacted", "And explain why you encouraged him/her to do it"] }, part3: { questions: ["How can leaders encourage their employees?", "When should parents encourage their children?", "What kind of encouragement should parents give?", "Do you think some people are better than others at persuading?"] } },
-                { id: "peopleNew2", title: "乐于助人的人", batch: "new", part2: { instruction: "Describe a person who often helps others.", youShouldSay: ["Who this person is", "How often he/she helps others", "How/why he/she helps others", "And how you feel about this person"] }, part3: { questions: ["Should children help their parents with household chores?", "What kind of help do people need when looking for a new job?", "Who should people ask for help, colleagues or family members?"] } },
-                { id: "peopleNew4", title: "机智解决问题的人", batch: "new", part2: { instruction: "Describe a person who solved a problem in a smart way.", youShouldSay: ["Who this person is", "What the problem was", "How he/she solved it", "And explain why you think he/she did it in a smart way"] }, part3: { questions: ["Do you think children are born smart or they learn to become smart?", "How do children become smart at school?", "Why are some people well-rounded and others only good at one thing?", "Why does modern society need talents of all kinds?"] } },
-                { id: "peopleNew5", title: "鼓励你保护自然的人", batch: "new", part2: { instruction: "Describe a person who encouraged you to protect the nature.", youShouldSay: ["Who he/she is", "How he/she encouraged you", "What he/she encouraged you to do", "And explain how you feel about this person"] }, part3: { questions: ["How can parents teach their children to protect nature?", "Should schools teach children to get close to nature?", "Do you think there should be laws to protect nature?"] } },
-                { id: "peopleNew6", title: "擅长做计划的人", batch: "new", part2: { instruction: "Describe a person who makes plans a lot and is good at planning.", youShouldSay: ["Who he/she is", "How you knew him/her", "What plans he/she makes", "And explain how you feel about this person"] }, part3: { questions: ["Do you think it's important to plan ahead?", "What activities do we need to plan ahead?", "Do you think children should plan their future careers?", "Should children ask their teachers or parents for advice when making plans?"] } },
-                { id: "peopleNew7", title: "喜欢画画的朋友", batch: "new", part2: { instruction: "Describe a friend of yours who loves drawing/painting.", youShouldSay: ["Who he/she is", "How you knew him/her", "How often he/she draws/paints", "And explain why you think he/she likes drawing"] }, part3: { questions: ["What is the right age for a child to learn drawing?", "Why do most children draw more often than adults do?", "Why do some people visit galleries or museums instead of viewing artworks online?", "Do you think galleries and museums should be free of charge?", "How do artworks inspire people?"] } },
-                { id: "peopleNew8", title: "想见的名人", batch: "new", part2: { instruction: "Describe a famous person you would like to meet.", youShouldSay: ["Who he/she is", "How you knew him/her", "How/where you would like to meet him/her", "And explain why you would like to meet him/her"] }, part3: { questions: ["What are the advantages and disadvantages of being a famous child?", "What can today's children do to become famous?", "What can children do with their fame?", "Do people become famous because of their talent?"] } },
-                { id: "peopleNew9", title: "让你骄傲的家人", batch: "new", part2: { instruction: "Describe a family member who you are proud of.", youShouldSay: ["Who this person is", "How often you spend time together", "What he/she does that makes you feel proud", "And explain why you are proud of him/her"] }, part3: { questions: ["What would children do to make their parents proud?", "What did you do to make your parents proud when you were young?", "What advantages of yours make you proud?", "When was the last time that you felt proud of yourself?"] } }
-            ],
+        // ----- Part 2&3 保留题 (来自1-4月新增题，简化版) -----
+        const peopleKeep = [
+            { id: "peopleKeep1", title: "鼓励别人做不愿做的事", batch: "keep", part2: { instruction: "Describe a time when you encouraged someone to do something that he/she didn't want to do.", youShouldSay: ["Who he or she is", "What you encouraged him/her to do", "How he/she reacted", "And explain why you encouraged him/her to do it"] }, part3: { questions: ["How can leaders encourage their employees?", "When should parents encourage their children?", "What kind of encouragement should parents give?", "Do you think some people are better than others at persuading?"] } },
+            { id: "peopleKeep2", title: "乐于助人的人", batch: "keep", part2: { instruction: "Describe a person who often helps others.", youShouldSay: ["Who this person is", "How often he/she helps others", "How/why he/she helps others", "And how you feel about this person"] }, part3: { questions: ["Should children help their parents with household chores?", "What kind of help do people need when looking for a new job?", "Who should people ask for help, colleagues or family members?"] } },
+            { id: "peopleKeep3", title: "机智解决问题的人", batch: "keep", part2: { instruction: "Describe a person who solved a problem in a smart way.", youShouldSay: ["Who this person is", "What the problem was", "How he/she solved it", "And explain why you think he/she did it in a smart way"] }, part3: { questions: ["Do you think children are born smart or they learn to become smart?", "How do children become smart at school?", "Why are some people well-rounded and others only good at one thing?"] } },
+            { id: "peopleKeep4", title: "擅长做计划的人", batch: "keep", part2: { instruction: "Describe a person who makes plans a lot and is good at planning.", youShouldSay: ["Who he/she is", "How you knew him/her", "What plans he/she makes", "And explain how you feel about this person"] }, part3: { questions: ["Do you think it's important to plan ahead?", "What activities do we need to plan ahead?", "Do you think children should plan their future careers?"] } },
+            { id: "peopleKeep5", title: "想见的名人", batch: "keep", part2: { instruction: "Describe a famous person you would like to meet.", youShouldSay: ["Who he/she is", "How you knew him/her", "How/where you would like to meet him/her", "And explain why you would like to meet him/her"] }, part3: { questions: ["What are the advantages and disadvantages of being a famous child?", "What can today's children do to become famous?", "Do people become famous because of their talent?"] } },
+            { id: "peopleKeep6", title: "让你骄傲的家人", batch: "keep", part2: { instruction: "Describe a family member who you are proud of.", youShouldSay: ["Who this person is", "How often you spend time together", "What he/she does that makes you feel proud", "And explain why you are proud of him/her"] }, part3: { questions: ["What would children do to make their parents proud?", "What advantages of yours make you proud?", "When was the last time that you felt proud of yourself?"] } }
+        ];
 
-            // ----- Part 2&3 新增题 (事件类) 包含发挥想象力、禁用手机的场合 -----
-            eventsNew: [
-                { id: "eventsNew1", title: "花费超过预期的物品", batch: "new", part2: { instruction: "Describe an item on which you spent more than expected.", youShouldSay: ["What it is", "How much you spent on it", "Why you bought it", "And explain why you think you spent more than expected"] }, part3: { questions: ["Do you often buy more than you expected?", "What do you think young people spend most of their money on?", "Do you think it is important to save money? Why?", "Do people buy things they don't need?"] } },
-                { id: "eventsNew2", title: "近期观影", batch: "new", part2: { instruction: "Describe a movie you watched and enjoyed recently.", youShouldSay: ["When and where you watched it", "Who you watched it with", "What it was about", "And explain why you watched this movie"] }, part3: { questions: ["What kinds of movies do you think are successful in your country?", "What are the factors that make a successful movie?", "Do Chinese people prefer to watch domestic movies or foreign movies?", "Do you think only well-known directors can create the best movies?"] } },
-                { id: "eventsNew3", title: "不享受的音乐活动", batch: "new", part2: { instruction: "Describe a music event that you didn't enjoy.", youShouldSay: ["What it was", "Who you went with", "Why you decided to go there", "And explain why you didn't enjoy it"] }, part3: { questions: ["What kind of music events do people like today?", "Do you think children should receive some musical education?", "What are the differences between old and young people's music preferences?", "What kind of music events are there in your country?"] } },
-                { id: "eventsNew4", title: "朋友所学", batch: "new", part2: { instruction: "Describe one of your friends who learned something new (not from a teacher).", youShouldSay: ["Who he/she is", "What he/she learned", "Why he/she learned this", "And explain whether it would be easier to learn from a teacher"] }, part3: { questions: ["Is it necessary to keep learning after graduating from school?", "Should teachers make learning in their classes fun?", "Do you think there are too many lessons for students to learn?", "Is it better to focus on a few subjects or to learn many subjects?"] } },
-                { id: "eventsNew5", title: "自行车/摩托车/汽车旅行", batch: "new", part2: { instruction: "Describe a bicycle/motorcycle/car trip you would like to go.", youShouldSay: ["Who you would like to go with", "Where you would like to go", "When you would like to go", "And explain why you would like to go by bicycle/motorcycle/car"] }, part3: { questions: ["Which form of vehicle is more popular in your country, bikes, cars or motorcycles?", "Do you think air pollution comes mostly from mobile vehicles?", "Do you think people need to change the way of transportation drastically to protect the environment?", "How are the transportation systems in urban areas and rural areas different?"] } },
-                { id: "eventsNew6", title: "给别人建议", batch: "new", part2: { instruction: "Describe a time when you gave advice to others.", youShouldSay: ["When it was", "To whom you gave the advice", "What the advice was", "And explain why you gave the advice"] }, part3: { questions: ["Should people prepare before giving advice?", "Is it good to ask advice from strangers online?", "What are the personalities of people whose job is to give advice to others?", "What are the problems if you ask too many people for advice?"] } },
-                { id: "eventsNew7", title: "微笑的场合", batch: "new", part2: { instruction: "Describe an occasion when many people were smiling.", youShouldSay: ["When it happened", "Who you were with", "What happened", "And explain why most people were smiling"] }, part3: { questions: ["Do you think people who like to smile are more friendly?", "Why do most people smile in photographs?", "Do women smile more than men? Why?", "Do people smile more when they are younger or older?"] } },
-                { id: "eventsNew8", title: "发挥想象力", batch: "new", part2: { instruction: "Describe a time you needed to use your imagination.", youShouldSay: ["When it was", "Why needed to use imagination", "How difficult or easy it was", "And explain how you felt about it"] }, part3: { questions: ["Do you think adults can have lots of imagination?", "Do you think imagination is essential for scientists?", "What kinds of jobs need imagination?", "What subjects are helpful for children's imagination?"] } },
-                { id: "eventsNew9", title: "禁用手机的场合", batch: "new", part2: { instruction: "Describe an occasion when you were not allowed to use your mobile phone.", youShouldSay: ["When it was", "Where it was", "Why you were not allowed to use your mobile phone", "And how you felt about it"] }, part3: { questions: ["How do young and old people use mobile phones differently?", "What positive and negative impact do mobile phones have on friendship?", "Is it a waste of time to take pictures with mobile phones?", "Do you think it is necessary to have laws on the use of mobile phones?"] } }
-            ],
+        const eventsKeep = [
+            { id: "eventsKeep1", title: "花费超过预期的物品", batch: "keep", part2: { instruction: "Describe an item on which you spent more than expected.", youShouldSay: ["What it is", "How much you spent on it", "Why you bought it", "And explain why you think you spent more than expected"] }, part3: { questions: ["Do you often buy more than you expected?", "What do you think young people spend most of their money on?", "Do you think it is important to save money? Why?"] } },
+            { id: "eventsKeep2", title: "近期观影", batch: "keep", part2: { instruction: "Describe a movie you watched and enjoyed recently.", youShouldSay: ["When and where you watched it", "Who you watched it with", "What it was about", "And explain why you watched this movie"] }, part3: { questions: ["What kinds of movies do you think are successful in your country?", "What are the factors that make a successful movie?", "Do Chinese people prefer to watch domestic movies or foreign movies?"] } },
+            { id: "eventsKeep3", title: "不享受的音乐活动", batch: "keep", part2: { instruction: "Describe a music event that you didn't enjoy.", youShouldSay: ["What it was", "Who you went with", "Why you decided to go there", "And explain why you didn't enjoy it"] }, part3: { questions: ["What kind of music events do people like today?", "Do you think children should receive some musical education?", "What are the differences between old and young people's music preferences?"] } },
+            { id: "eventsKeep4", title: "自行车旅行", batch: "keep", part2: { instruction: "Describe a bicycle/motorcycle/car trip you would like to go.", youShouldSay: ["Who you would like to go with", "Where you would like to go", "When you would like to go", "And explain why you would like to go by bicycle/motorcycle/car"] }, part3: { questions: ["Which form of vehicle is more popular in your country?", "Do you think air pollution comes mostly from mobile vehicles?", "Do you think people need to change the way of transportation drastically to protect the environment?"] } },
+            { id: "eventsKeep5", title: "给别人建议", batch: "keep", part2: { instruction: "Describe a time when you gave advice to others.", youShouldSay: ["When it was", "To whom you gave the advice", "What the advice was", "And explain why you gave the advice"] }, part3: { questions: ["Should people prepare before giving advice?", "Is it good to ask advice from strangers online?", "What are the personalities of people whose job is to give advice to others?"] } },
+            { id: "eventsKeep6", title: "微笑的场合", batch: "keep", part2: { instruction: "Describe an occasion when many people were smiling.", youShouldSay: ["When it happened", "Who you were with", "What happened", "And explain why most people were smiling"] }, part3: { questions: ["Do you think people who like to smile are more friendly?", "Why do most people smile in photographs?", "Do women smile more than men? Why?"] } },
+            { id: "eventsKeep7", title: "发挥想象力", batch: "keep", part2: { instruction: "Describe a time you needed to use your imagination.", youShouldSay: ["When it was", "Why needed to use imagination", "How difficult or easy it was", "And explain how you felt about it"] }, part3: { questions: ["Do you think adults can have lots of imagination?", "Do you think imagination is essential for scientists?", "What kinds of jobs need imagination?"] } },
+            { id: "eventsKeep8", title: "禁用手机的场合", batch: "keep", part2: { instruction: "Describe an occasion when you were not allowed to use your mobile phone.", youShouldSay: ["When it was", "Where it was", "Why you were not allowed to use your mobile phone", "And how you felt about it"] }, part3: { questions: ["How do young and old people use mobile phones differently?", "What positive and negative impact do mobile phones have on friendship?", "Is it a waste of time to take pictures with mobile phones?"] } }
+        ];
 
-            // ----- Part 2&3 新增题 (物品类) 包含有趣的建筑 -----
-            objectsNew: [
-                { id: "objectsNew1", title: "有趣的建筑", batch: "new", part2: { instruction: "Describe an interesting building.", youShouldSay: ["Where it is", "What it looks like", "What function it has", "And explain why you think it is interesting"] }, part3: { questions: ["What types of buildings are popular in your country?", "Is it worth spending a lot of money on the exterior appearance of a building?", "Is it more important for a building to look good on the outside or on the inside?", "Why do people like to visit historical sites?"] } },
-                { id: "objectsNew2", title: "APP/程序", batch: "new", part2: { instruction: "Describe a program or app on your computer or phone.", youShouldSay: ["What it is", "When/how you use it", "Where you found it", "And explain how you feel about it"] }, part3: { questions: ["What are the differences between old and young people when using apps?", "Why do some people not like using apps?", "What apps are popular in your country? Why?", "Should parents limit their children's use of computer programs and computer games? Why and how?"] } },
-                { id: "objectsNew3", title: "最近读过的故事", batch: "new", part2: { instruction: "Describe a story (e.g. a fairy tale) you have read recently.", youShouldSay: ["What it is about", "When you read it", "Whether you liked it", "And explain what you have learned from it"] }, part3: { questions: ["Why do most children like listening to stories before bedtime?", "Is a good storyline important for a movie?", "Do you think films with many celebrities are more likely to be popular?", "What films are popular in China right now?"] } },
-                { id: "objectsNew4", title: "生活中离不开的东西", batch: "new", part2: { instruction: "Describe something that you can't live without (not a computer/phone).", youShouldSay: ["What it is", "What you do with it", "How it helps you in your life", "And explain why you can't live without it"] }, part3: { questions: ["Why are children attracted to new things (such as electronics)?", "Why do some grown-ups hate to throw out old things (such as clothes)?", "Is the way people buy things affected? How?", "What do you think influences people to buy new things?", "Why do all children like toys?", "Do you think it is good for a child to always take his or her favourite toy with them?"] } },
-                { id: "objectsNew6", title: "完美工作", batch: "new", part2: { instruction: "Describe your perfect job.", youShouldSay: ["What it is", "Where you heard about it from", "What you need to learn to get the job", "And explain why you think it is your perfect job"] }, part3: { questions: ["What kind of job can be called a dream job?", "What jobs do children want to do when they grow up?", "What should people consider when choosing jobs?", "Is salary the main reason people choose a certain job?"] } },
-                { id: "objectsNew7", title: "让你失望的电影", batch: "new", part2: { instruction: "Describe a movie you watched recently that you felt disappointed about.", youShouldSay: ["When it was", "Why you didn't like it", "Why you decided to watch it", "And explain why you felt disappointed about it"] }, part3: { questions: ["Do you believe movie reviews?", "What are the different types of films in your country?", "Are historical films popular in your country? Why?", "Do you think films with famous actors or actresses are more likely to become successful films?", "Why are Japanese animated films so popular?", "Should the director pay a lot of money to famous actor?"] } }
-            ],
+        const objectsKeep = [
+            { id: "objectsKeep1", title: "有趣的建筑", batch: "keep", part2: { instruction: "Describe an interesting building.", youShouldSay: ["Where it is", "What it looks like", "What function it has", "And explain why you think it is interesting"] }, part3: { questions: ["What types of buildings are popular in your country?", "Is it worth spending a lot of money on the exterior appearance of a building?", "Why do people like to visit historical sites?"] } },
+            { id: "objectsKeep2", title: "APP/程序", batch: "keep", part2: { instruction: "Describe a program or app on your computer or phone.", youShouldSay: ["What it is", "When/how you use it", "Where you found it", "And explain how you feel about it"] }, part3: { questions: ["What are the differences between old and young people when using apps?", "Why do some people not like using apps?", "What apps are popular in your country? Why?"] } },
+            { id: "objectsKeep3", title: "完美工作", batch: "keep", part2: { instruction: "Describe your perfect job.", youShouldSay: ["What it is", "Where you heard about it from", "What you need to learn to get the job", "And explain why you think it is your perfect job"] }, part3: { questions: ["What kind of job can be called a dream job?", "What jobs do children want to do when they grow up?", "What should people consider when choosing jobs?"] } }
+        ];
 
-            // ----- Part 2&3 新增题 (地点类) -----
-            placesNew: [
-                { id: "placesNew1", title: "外国的短期停留", batch: "new", part2: { instruction: "Describe a foreign country you would like to stay or work for a short period of time.", youShouldSay: ["Which country it is", "Where you got to know this country", "What you will do there", "Why you will stay or work there just for a short period of time"] }, part3: { questions: ["Why do people sometimes go to other cities or other countries to travel?"] } },
-                { id: "placesNew2", title: "商场", batch: "new", part2: { instruction: "Describe a shopping mall.", youShouldSay: ["What its name is", "Where it is", "How often you visit it", "And what you usually buy at the mall"] }, part3: { questions: ["Why do people buy things they don't need?", "Do you think it's a waste of time to go shopping?", "Why are some people keen on shopping?", "What kind of people like shopping?"] } },
-                { id: "placesNew3", title: "家里放松的地方", batch: "new", part2: { instruction: "Describe your favorite place in your house where you can relax.", youShouldSay: ["Where it is", "What it is like", "What you enjoy doing there", "And explain why you feel relaxed at this place"] }, part3: { questions: ["Why is it difficult for some people to relax?", "What are the benefits of doing exercise?", "Do people in your country exercise after work?", "What is the place where people spend most of their time at home?", "Do you think there should be classes for training young people and children how to relax?", "Which is more important, mental relaxation or physical relaxation?"] } }
-            ],
+        const placesKeep = [
+            { id: "placesKeep1", title: "外国的短期停留", batch: "keep", part2: { instruction: "Describe a foreign country you would like to stay or work for a short period of time.", youShouldSay: ["Which country it is", "Where you got to know this country", "What you will do there", "Why you will stay or work there just for a short period of time"] }, part3: { questions: ["Why do people sometimes go to other cities or other countries to travel?"] } },
+            { id: "placesKeep2", title: "家里放松的地方", batch: "keep", part2: { instruction: "Describe your favorite place in your house where you can relax.", youShouldSay: ["Where it is", "What it is like", "What you enjoy doing there", "And explain why you feel relaxed at this place"] }, part3: { questions: ["Why is it difficult for some people to relax?", "What are the benefits of doing exercise?", "Do people in your country exercise after work?"] } }
+        ];
 
-            // ----- Part 2&3 保留题 (人物类) 暖黄色 - 根据您的要求调整 -----
-            peopleKeep: [
-                { id: "peopleKeep1", title: "精力充沛的人", batch: "keep", part2: { instruction: "Describe an energetic person that you know.", youShouldSay: ["Who this person is", "How you knew this person", "Why you think this person is energetic", "And explain how you feel about this person"] }, part3: { questions: ["What kinds of jobs need a lot of physical work?", "What's the difference between the payment for physical work and that for mental work?", "Can physical workers receive higher salaries in the future?", "Do you think machines could replace human workers in the future?", "Do you think you are an energetic person?", "Do you think there was more physical labor in the past than there is now?"] } },
-                { id: "peopleKeep2", title: "固执己见的人", batch: "keep", part2: { instruction: "Describe a person who has strong opinions.", youShouldSay: ["Who this person is", "How you knew him/her", "What kinds of strong opinions this person has", "And explain why you think he/she is a person who has strong opinions"] }, part3: { questions: ["What do young people have strong opinions about?", "What do old people have strong opinions about?", "Are there many young people who have strong opinions in our lives?", "Which is more important, listening to others or persuading others?", "Do you think we should only say something after thinking it through?", "Do you think it is good to have strong opinions?"] } },
-                { id: "peopleKeep3", title: "重新联系的老友", batch: "keep", part2: { instruction: "Describe an old friend you had lost touch with and got in contact with again.", youShouldSay: ["Who he/she is", "How you knew each other", "Why you lost contact", "How you got in contact again", "And explain how you felt after getting in contact again"] }, part3: { questions: ["Is it better to have a lot of friends than just a few friends?", "Would having just a few friends limit your horizons?", "Do you think you are good at maintaining good relationships with others?", "Why do old friends lose touch with each other?", "Why do people need to make new friends?", "Why do we have to give up some old friends?"] } },
-                { id: "peopleKeep4", title: "给建议的人", batch: "keep", part2: { instruction: "Describe a person from whom others like to ask for advice.", youShouldSay: ["Who this person is", "Why people like to ask for his/her advice", "What kind of advice he/she often gives", "And explain how you feel about the person"] }, part3: { questions: ["Do you follow the advice of your family members?", "Who should people ask for advice on big issues, family members or friends?", "Do people often ask for advice from professional people, like a lawyer?", "Why do some people like to ask others for advice on almost everything?", "Do you think the advice parents give their children is always good?", "Are professional consultancy services expensive in your country?"] } },
-                { id: "peopleKeep5", title: "医疗人士", batch: "keep", part2: { instruction: "Describe a person you know who has chosen a career in the medical field.", youShouldSay: ["Who he/she is", "What he/she does", "Why he/she chose this career", "And explain how you feel about him/her"] }, part3: { questions: ["Do you think doctors and nurses are very important?", "Who plays a more important role, doctors or nurses?", "Do you think that doctors and nurses are not paid enough?", "Do you think it is necessary to learn first aid skills?", "What are the differences between the work of a doctor and a nurse?", "Can a hospital function effectively without nurses?"] } },
-                { id: "peopleKeep6", title: "喜欢做手工的人", batch: "keep", part2: { instruction: "Describe a person who likes to make things by hand.", youShouldSay: ["Who this person is", "What he/she makes", "Why he/she likes to make things by hand", "And explain how you feel about the person"] }, part3: { questions: ["Are traditional handicrafts important to tourism?", "What are the benefits for students to learn to make things by hand?", "Why do many children like to make things by hand?", "Are there any traditional handicrafts in your hometown?", "Is it reasonable to charge a high price for handmade things?", "How does modern technology change the handicraft industry?"] } },
-                { id: "peopleKeep7", title: "生活精彩有趣的老人", batch: "keep", part2: { instruction: "Describe an old person you know who has had an interesting life.", youShouldSay: ["Who this person is", "Where he/she lives", "What he/she has done in his/her life", "And explain how you feel about him/her"] }, part3: { questions: ["What do old people often do in their daily lives?", "Why do some people live with old people?", "Can old people and their grandchildren learn from each other when they live together?", "What are the benefits of elderly people living alone?", "Do old people prefer to stay at home or go outside? Why?", "Do you think old people's life will improve with the development of technology?"] } },
-                { id: "peopleKeep8", title: "读书迷", batch: "keep", part2: { instruction: "Describe a person who likes to read a lot.", youShouldSay: ["Who this person is", "How you knew him/her", "What he/she likes to read", "And explain why you think he/she likes to read a lot"] }, part3: { questions: ["Why are many people so keen on reading?", "Do you think parents should help their children develop the reading habit from an early age?", "Is reading for fun or for work?", "What reading topics are popular in your country?", "What are the differences between paper books and movies?", "Do you think people of all ages need to read?"] } },
-                { id: "peopleKeep9", title: "有趣的邻居", batch: "keep", part2: { instruction: "Describe an interesting neighbor.", youShouldSay: ["Who he/she is", "How you knew him/her", "What you do together", "And explain why he/she is interesting"] }, part3: { questions: ["Do you think people are familiar with their neighbors?", "How can people improve the relationship with neighbors in a community?", "How do children build relationships with others in a community?", "Is it beneficial to get along well with neighbors?", "Why do many people in big cities not know their neighbors?", "How do people build relationships with local people in a new place?"] } },
-                { id: "peopleKeep10", title: "想要共事的家人", batch: "keep", part2: { instruction: "Describe a family member who you want to work with in the future.", youShouldSay: ["Who he/she is", "Whether you worked together before", "What kind of work you would like to do with him/her", "And explain how you feel about this family member"] }, part3: { questions: ["What kinds of family businesses are common in China?", "Is it good to work with family members? Why?", "Why do people want to have a family business?", "What benefits are there when working for big companies?", "Why do people want to change their jobs?", "What do people need to do to change their jobs?"] } },
-                { id: "peopleKeep11", title: "社交媒体上常刷的人", batch: "keep", part2: { instruction: "Describe a person who you regularly follow on social media.", youShouldSay: ["Who he/she is", "How you knew him/her", "What he/she posts on social media", "And explain why you follow him/her on social media"] }, part3: { questions: ["What can people do on social media?", "Do older people and younger people use the same kinds of social media apps?", "Do older people spend much time on social media?", "Are non-social media like television and newspapers still useful?", "Do you think people will read paper newspapers and books in the future? Why?", "Do you think it is easy to make friends on social media?"] } },
-                { id: "peopleKeep12", title: "喜欢一起聊天的朋友", batch: "keep", part2: { instruction: "Describe a friend you like to talk with.", youShouldSay: ["Who he/she is", "What you like to talk about", "Why you like to talk with him/her", "And explain how you feel about him/her"] }, part3: { questions: ["Where do young people like to meet?", "What do young people talk about when they meet up?", "Do you think people should be honest when talking with friends?", "On what occasions do people talk with strangers?", "What makes a good listener?", "What are the differences between talking to a friend and talking to a stranger?"] } },
-                { id: "peopleKeep13", title: "对社会有贡献的人", batch: "keep", part2: { instruction: "Describe a person who contributes to the society.", youShouldSay: ["Who this person is", "How you knew him/her", "What type of work he/she does", "And explain why you think he/she contributes to the society"] }, part3: { questions: ["What jobs are well-paid?", "What are the changes in working conditions?", "What are the impacts of the epidemic on the work environment?", "Do you think younger people should be lower paid than older people?", "What skills should be taught at school to improve students' ability to find jobs?", "What kinds of jobs are not paid fairly?"] } },
-                { id: "peopleKeep14", title: "一见且想继续了解的人", batch: "keep", part2: { instruction: "Describe a person you only met once recently and want to know more about.", youShouldSay: ["Who he/she is", "When you met him/her", "Why you want to know more about him/her", "And explain how you feel about him/her"] }, part3: { questions: ["How do people make friends in China?", "On what occasions do people like to make friends?", "Is it important to have the same hobbies and interests when making friends?", "What qualities make true friends?", "What can we do to leave a good impression on people we meet for the first time?", "What should we not talk about when we meet a person for the first time?"] } },
-                { id: "peopleKeep15", title: "喜欢共度时光的人", batch: "keep", part2: { instruction: "Describe someone you like to spend time with.", youShouldSay: ["Who this person is", "How you knew him/her", "What you usually do together", "And explain why you like to spend time with him/her"] }, part3: { questions: ["What kinds of people are easy to get along with?", "How do leaders get along with their subordinates?", "Do people have time for themselves nowadays?", "Do you like talking with older people? Why?", "Do you think it's important to spend some time alone?", "Do you think it is important for us to get along with different kinds of people?"] } },
-                { id: "peopleKeep16", title: "你国家的名人", batch: "keep", part2: { instruction: "Describe a popular/well-known person in your country.", youShouldSay: ["Who this person is", "What he/she has done", "Why he/she is popular", "And explain how you feel about this person"] }, part3: { questions: ["What kinds of people are popular at work?", "Are bosses more popular than employees at work?", "Which one is more important, maintaining a good relationship with colleagues or doing well at work?", "What benefits are there when a child is popular at school?", "Are there any disadvantages if a child is popular at school?", "Do you think popular children will grow up to be popular adults?"] } },
-                { id: "peopleKeep17", title: "年轻人的偶像", batch: "keep", part2: { instruction: "Describe someone (a famous person) that is a role model for young people.", youShouldSay: ["Who he/she is", "How you knew him/her", "What he/she has done", "And explain why he/she can be a role model for young people"] }, part3: { questions: ["What kinds of people are likely to be the role models for teenagers?", "Is it important for children to have a role model?", "Are there any differences between today's famous people and those of the past?", "What qualities do famous people have?", "What kinds of people are likely to become famous?", "Do people tend to choose the best people as their role model?"] } }
-            ],
+        // ----- Part 2&3 新增题 (5-8月新题 24道) -----
+        const part2New = [
+            { id: "p2n1", title: "喜欢或不喜欢的高建筑", batch: "new", part2: { instruction: "Describe a tall building you like or dislike.", youShouldSay: ["What it is used for", "Where it is", "What it looks like", "And explain why you like/dislike it"] }, part3: { questions: ["Are there many tall buildings in your country?", "What are the differences between those tall buildings in your country?"] } },
+            { id: "p2n2", title: "有趣视频", batch: "new", part2: { instruction: "Describe an interesting video.", youShouldSay: ["When and where you watched it", "What it is about", "Why you watched it", "And explain how you feel about it"] }, part3: { questions: ["What kind of videos do people in your country like to watch?", "Which is more helpful, watching videos or reading books?", "What skills can people learn from watching videos?"] } },
+            { id: "p2n3", title: "去过的无聊地方", batch: "new", part2: { instruction: "Describe a boring place.", youShouldSay: ["Where it is", "Who you went there with", "What you did there", "And explain why you think it is a boring place"] }, part3: { questions: ["Why do most children think education is boring?", "Why aren't young people willing to listen to the experiences of older people?", "What can people do when they feel bored?"] } },
+            { id: "p2n4", title: "去过的最喜欢的城市", batch: "new", part2: { instruction: "Describe your favorite city that you have visited.", youShouldSay: ["Where it is", "How you knew it", "When you visited it", "And explain why it is your favourite city"] }, part3: { questions: ["Which is more suitable for young people, urban life or rural life?", "How do people choose a city to travel to?", "Do you think a tourist city is also a good place to live? Why?"] } },
+            { id: "p2n5", title: "早起经历", batch: "new", part2: { instruction: "Describe a time when you got up early.", youShouldSay: ["When it was", "What you did", "Why you got up early", "And how you felt about it"] }, part3: { questions: ["Do you know anyone who likes to get up early?", "Why do people get up early?", "What kinds of occasions need people to arrive early?"] } },
+            { id: "p2n6", title: "喜欢在家种菜的人", batch: "new", part2: { instruction: "Describe a person who loves to grow vegetables at home or in the garden.", youShouldSay: ["Who this person is", "What vegetables he/she grows", "How he/she grows the vegetables", "And explain why he/she loves growing vegetables"] }, part3: { questions: ["What are the advantages of growing vegetables or flowers at home?", "Do many people grow vegetables or flowers at home in your country?"] } },
+            { id: "p2n7", title: "想颁布的新法律", batch: "new", part2: { instruction: "Describe a new law you would like to introduce in your country.", youShouldSay: ["What law it is", "What changes this law brings", "Whether this new law will be popular", "How you came up with the new law", "And explain how you feel about this new law"] }, part3: { questions: ["What rules should students follow at school?", "Do people in your country usually obey the law?", "How can parents teach children to obey rules?"] } },
+            { id: "p2n8", title: "发小", batch: "new", part2: { instruction: "Describe a friend from your childhood.", youShouldSay: ["Who he/she is", "Where and how you met each other", "What you often did together", "And explain what made you like him/her"] }, part3: { questions: ["Do you still keep in touch with your friends from childhood?", "How important is childhood friendship to children?", "Has technology changed people's friendships? How?"] } },
+            { id: "p2n9", title: "想从事医疗行业的人", batch: "new", part2: { instruction: "Describe a person you know who would like to choose a career in the medical field.", youShouldSay: ["When you knew him/her", "When he/she started to think about that", "What he/she would like to do", "And explain why he/she would like to choose this career"] }, part3: { questions: ["Do you think being a doctor is easy or difficult?", "Do you think learning biology is interesting for children?"] } },
+            { id: "p2n10", title: "拥有成功商业的人", batch: "new", part2: { instruction: "Describe a person you know who has a successful business.", youShouldSay: ["Who this person is", "How you got to know him/her", "Why and how he/she started the business", "What business he/she does", "And explain why you think the business is successful"] }, part3: { questions: ["Why do some people start their own business?", "Should governments provide financial support to start-ups?"] } },
+            { id: "p2n11", title: "近期改变的计划", batch: "new", part2: { instruction: "Describe a plan that you had to change recently.", youShouldSay: ["When this happened", "What made you change the plan", "What the new plan was", "And how you felt about the change"] }, part3: { questions: ["Do people often change their plans?", "Would you tell others if you change your plan?", "How does technology help people make plans?"] } },
+            { id: "p2n12", title: "在团队中工作", batch: "new", part2: { instruction: "Describe a time when you worked in a group.", youShouldSay: ["What you did", "Who you worked with", "What problems you faced", "And explain why you worked in the group"] }, part3: { questions: ["Why do some people prefer to work by themselves?", "What should a leader do to make team members want to follow him or her?", "Should students learn to do group work?"] } },
+            { id: "p2n13", title: "重要决定", batch: "new", part2: { instruction: "Describe an important decision that you made.", youShouldSay: ["What the decision was", "How you made your decision", "What the results of the decision were", "And explain why it was important"] }, part3: { questions: ["Do you think children sometimes have to make important decisions?", "What important decisions do teenagers need to make after graduation?", "How do people usually make important decisions?"] } },
+            { id: "p2n14", title: "喜欢现场体育赛事", batch: "new", part2: { instruction: "Describe a live sports event you watched and liked.", youShouldSay: ["What it was", "When and where you watched it", "Who you watched it with", "And explain why you liked it"] }, part3: { questions: ["Why do some people like to watch sports events?", "Where do people normally watch sports events?", "What sports matches are suitable for children to attend?"] } },
+            { id: "p2n15", title: "特别场合的食物", batch: "new", part2: { instruction: "Describe a food that people eat on special occasions/events.", youShouldSay: ["What it is", "What the special event/occasion is", "How it is cooked/made", "And explain why people eat it on that special occasion/event"] }, part3: { questions: ["Why are there special foods on special occasions or events?", "What are the differences between everyday food and festival food?"] } },
+            { id: "p2n16", title: "擅长学习和说语言的人", batch: "new", part2: { instruction: "Describe a person who is good at learning and speaking new languages.", youShouldSay: ["How you got to know him/her", "How he/she learns a new language", "What languages he/she can speak", "And explain how you feel about him/her"] }, part3: { questions: ["Are there many people who can speak foreign languages in your country?", "Does speaking other languages help at work?", "Why is it easier for children to learn new things than for adults?"] } },
+            { id: "p2n17", title: "遇到的科技问题", batch: "new", part2: { instruction: "Describe a challenging technological problem you faced.", youShouldSay: ["What the problem was", "When and where you faced it", "How challenging it was", "And explain how you solved it"] }, part3: { questions: ["What are the advantages and disadvantages of AI?", "Do you think people today should learn about AI technology?", "How can AI help in our lives?"] } },
+            { id: "p2n18", title: "名人出演的广告", batch: "new", part2: { instruction: "Describe an advertisement with a famous person in it.", youShouldSay: ["Who the person is", "Where you can see it", "What the advertisement is about", "And explain how you feel about the advertisement"] }, part3: { questions: ["What are the advantages and disadvantages of advertisements?", "Why are many advertisements endorsed by celebrities?", "Is advertising important for a company? Why?"] } },
+            { id: "p2n19", title: "推荐旅行过的地方", batch: "new", part2: { instruction: "Describe a place you have travelled to that you would like to recommend to others.", youShouldSay: ["What it is", "Where it is", "What you saw and did there", "And explain why you would like to recommend it to others"] }, part3: { questions: ["Where do people in your country often go for holidays?", "Where do young people in your country often go for holidays?", "How do people usually plan holidays?"] } },
+            { id: "p2n20", title: "最近看过的电视/网络节目", batch: "new", part2: { instruction: "Describe a TV show/online program you have watched recently.", youShouldSay: ["What it is", "What it is about", "How often you watch it", "And explain how you feel about it"] }, part3: { questions: ["What are the differences between the TV programs young people like to watch and those old people like to watch?", "What makes a popular TV or online program?", "What kinds of TV or online programs are popular in your country?"] } },
+            { id: "p2n21", title: "坏掉的电子设备", batch: "new", part2: { instruction: "Describe a time when you had a problem with using an electronic device.", youShouldSay: ["When it happened", "Where it happened", "What the problem was", "And explain how you solved the problem at last"] }, part3: { questions: ["Why are people keen on buying new electronic devices?", "What impact do electronic devices have on people?"] } },
+            { id: "p2n22", title: "喜欢拜访但不想住的家", batch: "new", part2: { instruction: "Describe a home that you like to visit but do not want to live in.", youShouldSay: ["Where it is", "What it is like", "Why you like to visit it", "And explain why you would not like to live there"] }, part3: { questions: ["Do Chinese people like to visit others' homes?", "What do Chinese people do when they visit others?", "What kind of place do people in your country like to live in?"] } },
+            { id: "p2n23", title: "包含动物的故事或书", batch: "new", part2: { instruction: "Describe a story/book with animals in it.", youShouldSay: ["What animals are in it", "What the story/book is about", "Why you read the story/book", "And explain what you think of this story/book"] }, part3: { questions: ["Should schools teach children about animals?", "Do many people keep pets in your country?", "What are the advantages of keeping a pet?"] } },
+            { id: "p2n24", title: "别人帮助解决问题", batch: "new", part2: { instruction: "Describe a time when a person did something to help you solve a problem.", youShouldSay: ["Who the person is", "What the problem was", "How he/she helped you", "And explain how you felt about the experience"] }, part3: { questions: ["How important is it for schools to help children become smarter?"] } }
+        ];
 
-            // ----- Part 2&3 保留题 (事件类) 暖黄色 - 移除地点、人物类，保留纯事件 -----
-            eventsKeep: [
-                { id: "eventsKeep1", title: "近期日常改变", batch: "keep", part2: { instruction: "Describe a positive change that you have made recently in your daily routine.", youShouldSay: ["What the change is", "How you have changed the routine", "Why you think it is a positive change", "And explain how you feel about the change"] }, part3: { questions: ["What do people normally plan in their daily lives?", "Is time management very important in our daily lives?", "What changes would people often make?", "Do you think it is good to change jobs frequently?", "Who do you think would make changes more often, young people or old people?", "Who should get more promotion opportunities in the workplace, young people or older people?"] } },
-                { id: "eventsKeep2", title: "感兴趣的科学学科", batch: "keep", part2: { instruction: "Describe an area/subject of science that you are interested in.", youShouldSay: ["Which area/subject it is", "When and where you came to know this area/subject", "How you get information about this area/subject", "And explain why you are interested in this area/subject"] }, part3: { questions: ["Why do some children not like learning science at school?", "Is it important to study science at school?", "Which science subject is the most important for children to learn?", "Should people continue to study science after graduating from school?", "How do you get to know about scientific news?", "Should scientists explain the research process to the public?"] } },
-                { id: "eventsKeep4", title: "学校/工作中的重要规则", batch: "keep", part2: { instruction: "Describe a rule that is important in your school or at work.", youShouldSay: ["What the rule is about", "What happens when people break the rule", "Why you think it is an important rule", "And explain how you feel about the rule"] }, part3: { questions: ["What rules should children follow at home in your country?", "On what occasions can children be forgiven if they don't follow some rules?", "What rules should people follow when using public transport?", "What kinds of rules do people need to follow in public places?", "What are the reasons that cause people to break rules?", "When people break rules, how would they be punished in your country?"] } },
-                { id: "eventsKeep5", title: "重要决定", batch: "keep", part2: { instruction: "Describe an important decision that you made.", youShouldSay: ["What the decision was", "How you made your decision", "What the results of the decision were", "And explain why it was important"] }, part3: { questions: ["Do you think children sometimes have to make important decisions?", "What important decisions do teenagers need to make after graduation?", "Who can children turn to for help when making a decision?", "Do you think advertisements can influence our decisions when shopping?", "Do you think the influence of advertising is good?", "How do people usually make important decisions?"] } },
-                { id: "eventsKeep6", title: "近期改变的计划", batch: "keep", part2: { instruction: "Describe a plan that you had to change recently.", youShouldSay: ["When this happened", "What made you change the plan", "What the new plan was", "And how you felt about the change"] }, part3: { questions: ["Do people often change their plans?", "Would you tell others if you change your plan?", "How does technology help people make plans?", "Why do you think parents still make plans for their children nowadays?"] } },
-                { id: "eventsKeep8", title: "学到新东西的网络视频", batch: "keep", part2: { instruction: "Describe an online video in which you learned something new.", youShouldSay: ["When and where you watched it", "What it was", "Why you watched it", "And explain what you have learned from it"] }, part3: { questions: ["What kinds of videos are most popular in your country?", "Are there many people who watch online videos a lot?", "Do you think people spend too much time watching short videos? Why?", "Why are so many young people obsessed with short videos?", "What are the advantages of online learning?", "Do you think online learning will replace face-to-face learning?"] } },
-                { id: "eventsKeep9", title: "令你自信的事", batch: "keep", part2: { instruction: "Describe something you did in your study/work that has made you feel confident.", youShouldSay: ["When and where it happened", "What you did", "Why it made you feel confident", "And explain how you felt about it"] }, part3: { questions: ["How can a person become more confident?", "What can teachers do to help their students become more confident?", "How can teachers help their students become more confident by rewarding them for studying?", "What can teachers do to make studying more interesting?", "Do you think that children of confident parents are also confident?", "Why do so many people lack confidence these days?"] } },
-                { id: "eventsKeep11", title: "公共场所接陌生人电话", batch: "keep", part2: { instruction: "Describe a time when you answered a phone call from someone you didn't know in a public place.", youShouldSay: ["When and where it happened", "Who called you", "What he/she said", "How you responded", "And explain how you felt about the experience"] }, part3: { questions: ["Do most people mind others talking on the phone in public places?", "What are the differences between sitting next to someone who talks on the phone and sitting next to people who talk to each other while traveling by train?", "Why do some people not care about their actions in public?", "Should parents teach their children to behave well in public?"] } },
-                { id: "eventsKeep17", title: "帮助亲人", batch: "keep", part2: { instruction: "Describe an occasion when you helped a family member/relative with something.", youShouldSay: ["When it happened", "Who you helped", "How you helped", "And explain how you felt about the experience"] }, part3: { questions: ["How can children help their parents at home?", "Should parents always help their children with everything?", "What can children learn by helping others?", "Should parents reward their children when they help others?", "Do neighbours often help each other in your country?", "How do people know that their neighbours might need help?"] } },
-                { id: "eventsKeep19", title: "弄丢贵重物品", batch: "keep", part2: { instruction: "Describe a time when you lost an important and valuable item.", youShouldSay: ["When and where it happened", "What it was", "How important and valuable it was", "How you lost it", "And explain how you felt about the experience"] }, part3: { questions: ["What are some common items that people tend to lose easily?", "What are the reasons why people often misplace or lose things?", "What do people often do after losing things?", "What should parents do to teach their children not to lose things?", "Are there any good ways to remind us not to forget or lose things?", "Is it important for students to be organized?"] } },
-                { id: "eventsKeep20", title: "获奖", batch: "keep", part2: { instruction: "Describe a prize you have received recently.", youShouldSay: ["What it was", "When you received it", "What you did to receive it", "And explain how you felt about it"] }, part3: { questions: ["Do you think competition is all about the prize?", "Why should we set prizes for competitions?", "What prizes should schools set for students?", "What criteria should be set for students to win a particular prize?", "Why do many companies offer prizes to their customers?", "Why do some companies encourage employees to compete with each other?"] } },
-                { id: "eventsKeep21", title: "遇到困难挑战", batch: "keep", part2: { instruction: "Describe a challenge you faced that you thought was rather difficult.", youShouldSay: ["What it was", "When and where you faced it", "Why you thought it was a difficult challenge", "And explain how you felt at the time"] }, part3: { questions: ["What do children often do when they face a challenge?", "Is it easy for children to overcome a challenge?", "Do most people choose to face a challenge alone or with others?", "What activities do you think would make children feel challenged? Why?", "What challenges would people face when learning new sports?", "Why do some people enjoy doing extreme sports?"] } },
-                { id: "eventsKeep24", title: "喜欢和亲友去的地方", batch: "keep", part2: { instruction: "Describe a place in your hometown/city that is different from other places and that you enjoy visiting with your parents/friends.", youShouldSay: ["Where it is", "What it is like", "What you often do there", "Who you often go there with", "And explain why you think it is different"] }, part3: { questions: ["What are the differences between big cities and small cities?", "Where do people in your hometown like to go?", "What are the differences between the places young people like to go and the places old people like to go?", "What do young people like to do in their leisure time?", "Do you think it is necessary to visit the same place many times?", "What factors attract people to go to visit other places other than their hometown?"] } },
-                { id: "eventsKeep26", title: "传统节日的食物", batch: "keep", part2: { instruction: "Describe your favourite food at a traditional festival or a special event in your country.", youShouldSay: ["What it is", "At which festival/event you eat it", "How it is made", "And explain why you like it"] }, part3: { questions: ["Do people in your country grow plants at home?", "What plants can people grow in cities?", "Are there any difficulties when people grow plants in cities?", "Do most people prefer vegetables bought from the supermarket or grown at home?", "Why do people like to have a big meal at traditional festivals or big events?", "Is it bad behavior for people to look at their phones during a meal?"] } },
-                { id: "eventsKeep28", title: "看到野生动物的地方", batch: "keep", part2: { instruction: "Describe a place you know where people can see a lot of wildlife.", youShouldSay: ["Where it is", "What kinds of wildlife people can see there", "Whether people like to go there", "And explain how you feel about it"] }, part3: { questions: ["Why are most children interested in wild animals?", "Should parents take their children to the zoo to see wild animals?", "Are wild animals easy to spot in your country?", "Are there many wildlife documentaries produced in your country?", "What impacts does only seeing wild animals in zoos have on children's understanding of these animals?", "Which is the better way to see wildlife, watching documentaries or going into the wild?"] } },
-                { id: "eventsKeep31", title: "向小辈展示新东西", batch: "keep", part2: { instruction: "Describe a time that you showed something which was new to a person who was younger than you.", youShouldSay: ["When it was", "What it was", "Who you showed it to", "How you showed it", "Why you showed it", "And explain how you felt about it"] }, part3: { questions: ["What skills should children learn?", "What are the differences between the things adults learn and the things that children learn?", "Why are some people not willing to ask help from others while studying?", "What skills do you think children should learn before going to school?", "How can young people be motivated to learn new things?", "Is it possible for a person to achieve something without motivation?"] } },
-                { id: "eventsKeep33", title: "印象深刻的课程", batch: "keep", part2: { instruction: "Describe a course that impressed you a lot.", youShouldSay: ["What the course was about", "Where you took the course", "What you did during the course", "And explain why it impressed you a lot"] }, part3: { questions: ["Why do some people have a better memory than others?", "Do people like things of memorial significance?", "Which can help people remember things better, words or photos?", "Can technology help people remember things better? How?", "What do people need to remember in their daily lives?", "What can we learn from history?"] } },
-                { id: "eventsKeep35", title: "组织快乐活动", batch: "keep", part2: { instruction: "Describe a time when you organized a happy event successfully.", youShouldSay: ["What the event was", "How you prepared for it", "Who helped you to organize it", "And explain why you think it was a successful event"] }, part3: { questions: ["How can parents help children to be organized?", "On what occasions do people need to be organized?", "Does everything need to be well prepared?", "Do people need others' help when organizing things?", "How would you feel when you were not well prepared for something?", "Do you prefer to prepare and organize an activity or just take part in an activity?"] } },
-                { id: "eventsKeep38", title: "提高注意力", batch: "keep", part2: { instruction: "Describe something you do that can help you concentrate on work/study.", youShouldSay: ["What it is", "How it helps you concentrate", "When you do it", "And explain how you feel about it"] }, part3: { questions: ["Why is it more difficult for children to concentrate nowadays than in the past?", "Do you think technology will harm children's ability to concentrate?", "What kinds of jobs require high concentration at work?", "Can exercise help people improve concentration?", "Is it important for children to concentrate on their studies? Why?", "What can people do to improve their ability to concentrate?"] } },
-                { id: "eventsKeep40", title: "有趣的讨论", batch: "keep", part2: { instruction: "Describe an interesting discussion you had with your friend.", youShouldSay: ["What the discussion was about", "What opinions you and your friend had", "Why you think the discussion was interesting", "And how you felt about it"] }, part3: { questions: ["When do children normally form their own views?", "Do children have strong opinions?", "Should parents require their kids to obey them?", "In what industries do you think communication is a necessary skill?", "Should parents consider their children's opinions on everything? Why?", "Why do some young people refuse to communicate with others?"] } },
-                { id: "eventsKeep44", title: "花费甚少的外出日", batch: "keep", part2: { instruction: "Describe a special day out that cost you little money.", youShouldSay: ["When the day was", "Where you went", "How much you spent", "And explain how you feel about the day"] }, part3: { questions: ["Do people like to spend their leisure time out in your country?", "How do people spend their leisure time in your country?", "How does technology affect the way people spend their leisure time?", "Do you think only old people have time for leisure?", "Why do people like to have days off?", "Going out to have holidays is tiring. Why do people still want to do it?"] } },
-                { id: "eventsKeep47", title: "语言学习", batch: "keep", part2: { instruction: "Describe a thing you did to learn another language.", youShouldSay: ["What language you learned", "What you did", "How it helped you learn the language", "And how you felt about it"] }, part3: { questions: ["What difficulties do people face when learning a language?", "Do you think language learning is important? Why?", "Which is better, to study a language alone or to study it in a group? Why?", "What's the best way to learn a language?", "What are the advantages and disadvantages of learning a language?", "Some people think that technology has made it unnecessary to learn languages. What do you think?"] } },
-                { id: "eventsKeep48", title: "惊喜之事", batch: "keep", part2: { instruction: "Describe something that surprised you and made you happy.", youShouldSay: ["What it was", "Who did this", "How you found out about it and what you did", "And explain why it surprised you and made you happy"] }, part3: { questions: ["How do people express happiness in your culture?", "Do you think happiness has any effect on people? How?", "How can people be happy?", "Is it good for people to be unhappy? Why?", "Do men and women have different attitudes and feelings about shopping?", "What do people usually spend money on?"] } },
-                { id: "eventsKeep49", title: "远距离步行", batch: "keep", part2: { instruction: "Describe a long walk you ever had.", youShouldSay: ["When this happened", "Where you walked", "Who you were with", "And explain how you felt about this long walk"] }, part3: { questions: ["What outdoor activities do people like?", "What are the differences between the outdoor activities children did in the past and now?", "Is leisure time important to everyone? Why?", "Do women have more leisure time than men?", "What are the benefits of outdoor activities for children?", "Do you think that walking is not as helpful as playing other sports for our health?"] } },
-                { id: "eventsKeep50", title: "一次非常忙碌的经历", batch: "keep", part2: { instruction: "Describe a time you were very busy.", youShouldSay: ["When it happened", "Where you were", "What you did", "And explain why you were busy"] }, part3: { questions: ["Are you often busy?", "What are the advantages and disadvantages when people keep busy?", "Do you think children should learn through playing games or under pressure?", "What kind of pressure people may experience at work?", "How does technology help with time management?", "Does technology distract people?"] } },
-                { id: "eventsKeep52", title: "困难决定终成功", batch: "keep", part2: { instruction: "Describe a difficult decision that you made and had a good result.", youShouldSay: ["What the decision was", "When you made that decision", "Why it was difficult to make", "And explain how you felt about the good result"] }, part3: { questions: ["Do you think it's necessary for kids to make as many decisions by themselves as they can?", "Do you think some people can make decisions without asking for advice from others?", "Do you think young people are easily influenced by others when they make decisions? Why or why not?", "What kinds of decisions do young people have to make?", "Who do young people like to ask for advice when making decisions?", "Do advertisements influence consumers' decisions?"] } },
-                { id: "eventsKeep54", title: "庆祝过的活动", batch: "keep", part2: { instruction: "Describe an important event you celebrated.", youShouldSay: ["What the event was", "When it happened", "Who attended the event", "And explain how you felt about the event"] }, part3: { questions: ["Do people often celebrate festivals with families?", "Do people often celebrate events with a large group of people or just a few people?", "What kinds of events do people usually celebrate?", "Do you like to celebrate important events? Why?", "Why is it important to celebrate festivals?", "Do most people like to share their good news with others?"] } },
-                { id: "eventsKeep55", title: "想参加的比赛", batch: "keep", part2: { instruction: "Describe a contest/competition you would like to participate in.", youShouldSay: ["What the contest/competition is about", "Where the contest/competition will take place", "When it will be held", "And explain why you would like to participate in it"] }, part3: { questions: ["What are the contests commonly seen on TV programs?", "Why are competition shows popular?", "What kinds of industries need competition? Why?", "Do you think it is necessary to encourage people to compete with one another in companies?", "What kinds of people like to take part in competitions?", "Do you think the ability to compete is natural or learned?"] } },
-                { id: "eventsKeep58", title: "对社会有贡献的人", batch: "keep", part2: { instruction: "Describe a person who contributes to the society.", youShouldSay: ["Who this person is", "How you knew him/her", "What type of work he/she does", "And explain why you think he/she contributes to the society"] }, part3: { questions: ["What jobs are well-paid?", "What are the changes in working conditions?", "What are the impacts of the epidemic on the work environment?", "Do you think younger people should be lower paid than older people?", "What skills should be taught at school to improve students' ability to find jobs?", "What kinds of jobs are not paid fairly?"] } },
-                { id: "eventsKeep59", title: "征求意见", batch: "keep", part2: { instruction: "Describe a time when someone asked for your opinion.", youShouldSay: ["Who asked for your opinion", "Why he/she wanted to know your opinion", "What opinion you gave", "And explain how you felt when he/she asked for your opinion"] }, part3: { questions: ["What are the disadvantages of sharing opinions on the Internet?", "Why do people like to express their opinions on the Internet nowadays?", "Are there any apps designed for collecting opinions about products or services?", "Why do some people dislike giving their opinions?", "Should teachers give advice to children?", "What should a company do when receiving feedback about its products?"] } },
-                { id: "eventsKeep60", title: "交通拥堵", batch: "keep", part2: { instruction: "Describe a time when you were stuck in a traffic jam for a very long time.", youShouldSay: ["When it happened", "Where you were stuck", "What you did while waiting", "And explain how you felt in the traffic jam"] }, part3: { questions: ["How can we solve the traffic jam problem?", "Do you think developing public transport can solve traffic jam problems?", "Do you think the high ways will help reduce traffic jams?", "What are good ways to manage traffic?", "Do you like to use public transport?", "Would you rather be in a car or a bus in a traffic jam?"] } },
-                { id: "eventsKeep61", title: "丢东西的经历", batch: "keep", part2: { instruction: "Describe an occasion that you lost something in public.", youShouldSay: ["What you lost", "When and where you lost it", "What you did to find it", "And explain how you felt about it"] }, part3: { questions: ["What kinds of things do people usually lose?", "What will people do when losing things?", "Is it effective to offer rewards to find lost things?", "What kinds of people may lose things often?", "What can we do to reduce the possibility of losing things?", "What do people often feel after losing things?"] } },
-                { id: "eventsKeep63", title: "别人讲述的故事", batch: "keep", part2: { instruction: "Describe a story someone told you and you remember.", youShouldSay: ["What the story was about", "Who told you this story", "Why you remember it", "And how you feel about it"] }, part3: { questions: ["Do young children like the same stories as older children?", "How has technology changed storytelling?", "How do people tell stories to children?", "Why do children like stories?", "Will smart devices affect the relationship between children and parents?", "Which do you think is better, paper books or e-books?"] } },
-                { id: "eventsKeep64", title: "不喜欢并想要改变的规则", batch: "keep", part2: { instruction: "Describe a rule you dislike and would like to change in the future.", youShouldSay: ["What it is", "What it is for", "Why you don't like it", "And explain why you would like to change it"] }, part3: { questions: ["What are the rules students should follow at school?", "Are the rules at school good or bad? Why?", "What rules should children follow at home?", "How are people punished when parking at a wrong spot?", "When is it okay to break the rules?", "Do you know anyone who has broken the law? How?"] } },
-                { id: "eventsKeep65", title: "节约时间的方法/改变", batch: "keep", part2: { instruction: "Describe a way/change that helps you save a lot of time.", youShouldSay: ["What it is", "How you implement it", "How difficult it is", "And explain how you feel about the way/change"] }, part3: { questions: ["What can people do to save time?", "Does technology help people save time? How and why?", "Do you think parents should be responsible for teaching children to save time?", "Do people who can manage time well become successful more easily?", "Is it necessary for children to learn time management?", "What can schools do to help students learn time management?"] } },
-                { id: "eventsKeep67", title: "工作/学习中的积极建议", batch: "keep", part2: { instruction: "Describe an occasion when someone gave you positive advice or suggestions about your work/study.", youShouldSay: ["Who the person is", "What he/she said", "How the advice/suggestion affected you", "And explain how you felt about the advice/suggestions"] }, part3: { questions: ["When should parents encourage their children?", "Should parents always encourage their children?", "Do you think negative feedback is more important than positive feedback? Why?", "Why is negative feedback as important as positive feedback at work or in study?", "Which is more important for adults in the workplace, positive feedback or negative feedback?", "Do you think people care about others' comments about them?"] } },
-                { id: "eventsKeep68", title: "保健方式", batch: "keep", part2: { instruction: "Describe something you do to keep fit and healthy.", youShouldSay: ["What it is", "When you do it", "Who you do it with", "Why it is important to keep fit and healthy", "And explain why it can help you keep fit and healthy"] }, part3: { questions: ["How do children and old people keep fit and healthy?", "What do people normally do to keep fit and healthy in your country?", "How can parents help and guide their kids to keep healthy?", "Do you think it is good for governments to utilize popular celebrities to help build health awareness?", "How can we use technology to keep fit?", "Should schools provide physical education to students? Why and how?"] } },
-                { id: "eventsKeep71", title: "送朋友的礼物", batch: "keep", part2: { instruction: "Describe a gift you would like to buy for your friend.", youShouldSay: ["How you knew your friend", "How long you have known him/her", "How you would choose a gift for him/her", "And explain why you would choose that gift for him/her"] }, part3: { questions: ["When do people normally send gifts to others?", "Is it hard to choose a gift?", "Will people feel happy when receiving an expensive gift?", "Which do people give on traditional festivals, red envelopes or other kinds of gifts?", "What do people usually consider when buying gifts?", "Are there any unlucky things that people should not buy as gifts in your country?"] } },
-                { id: "eventsKeep74", title: "壮志未酬", batch: "keep", part2: { instruction: "Describe an ambition that you haven't achieved.", youShouldSay: ["What it is", "Why you haven't achieved it", "What you are doing about it now", "And how you feel about it"] }, part3: { questions: ["What ambitions do children usually have?", "Why are some people very ambitious in their work?", "Why don't some people have dreams?", "How do people balance work and life?", "Why do some people like to be the manager in the workplace?", "What are the traits of ambitious people?"] } },
-                { id: "eventsKeep75", title: "向长者学习的技能", batch: "keep", part2: { instruction: "Describe a skill that you learned from older people.", youShouldSay: ["What the skill is", "Who you learned it from", "How you learned it", "And how you feel about it"] }, part3: { questions: ["What can children learn from their parents?", "What kind of help do you think older people need?", "What skills can young people learn from older people?", "What knowledge can children learn from their grandparents?", "What new skills can old people learn?", "Do you think many old people in your country feel lonely?"] } },
-                { id: "eventsKeep76", title: "用手机做重要事情", batch: "keep", part2: { instruction: "Describe a time you used your cellphone/smartphone to do something important.", youShouldSay: ["What happened", "When it happened", "How important the cellphone/smartphone was", "And explain how you felt about the experience"] }, part3: { questions: ["What do you usually do with a cellphone?", "What are the differences between young people and old people when using a cellphone?", "Which one is more important, using a cellphone to make phone calls or to read messages?", "Do you think there should be a law to stop people from making phone calls in public?", "What can be done to stop cellphone addiction?", "Do you think it is too late to call others at 11 or 12 o'clock at night?"] } },
-                { id: "eventsKeep77", title: "帮助小孩", batch: "keep", part2: { instruction: "Describe a time when you helped a child.", youShouldSay: ["When it was", "How you helped him/her", "Why you helped him/her", "And how you felt about it"] }, part3: { questions: ["What can schools do to develop students' awareness of volunteering?", "Why is it necessary to do volunteer services?", "What can you do to help your neighbors?", "Do people in your country like to help neighbors?", "Why is it important to help neighbors?", "Should developed countries provide technological help to developing countries?"] } },
-                { id: "eventsKeep78", title: "免费物品", batch: "keep", part2: { instruction: "Describe something you received for free.", youShouldSay: ["What it was", "Who you received it from", "Where you received it", "And how you felt about it"] }, part3: { questions: ["Why do companies give free things to people?", "Do you think people like free things?", "What kind of free things do companies usually give?", "Do you think people value free things less than things they pay for?"] } },
-                { id: "eventsKeep81", title: "改变世界的发明", batch: "keep", part2: { instruction: "Describe an invention that has changed the world in a positive way.", youShouldSay: ["What it is", "What benefits it has brought", "How it influences people of different ages", "And explain how it changed people's lives"] }, part3: { questions: ["What is the most helpful innovation at home?", "What household appliances make us lazy?", "What kinds of inventions can be used at school?", "Do you think AI will replace human teachers? Why?"] } },
-                { id: "eventsKeep83", title: "迟到", batch: "keep", part2: { instruction: "Describe a time when you missed or were late for an important meeting/event.", youShouldSay: ["When it happened", "What happened", "Why you missed/were late for it", "And explain how you felt about this experience"] }, part3: { questions: ["Are you a punctual person?", "Do you think it is important to be on time?", "Do you always avoid being late?", "Why are people often late for meetings or appointments?", "Are people in your country often late for meetings?", "Do you think people are born with time management skills or they can develop them?"] } }
-            ],
-
-            // ----- Part 2&3 保留题 (物品类) 暖黄色 - 根据您的要求调整 -----
-            objectsKeep: [
-                { id: "objectsKeep1", title: "获奖", batch: "keep", part2: { instruction: "Describe a prize you have received recently.", youShouldSay: ["What it was", "When you received it", "What you did to receive it", "And explain how you felt about it"] }, part3: { questions: ["Do you think competition is all about the prize?", "Why should we set prizes for competitions?", "What prizes should schools set for students?", "What criteria should be set for students to win a particular prize?", "Why do many companies offer prizes to their customers?", "Why do some companies encourage employees to compete with each other?"] } },
-                { id: "objectsKeep2", title: "传统节日的食物", batch: "keep", part2: { instruction: "Describe your favourite food at a traditional festival or a special event in your country.", youShouldSay: ["What it is", "At which festival/event you eat it", "How it is made", "And explain why you like it"] }, part3: { questions: ["Do people in your country grow plants at home?", "What plants can people grow in cities?", "Are there any difficulties when people grow plants in cities?", "Do most people prefer vegetables bought from the supermarket or grown at home?", "Why do people like to have a big meal at traditional festivals or big events?", "Is it bad behavior for people to look at their phones during a meal?"] } },
-                { id: "objectsKeep3", title: "最喜欢的运动", batch: "keep", part2: { instruction: "Describe a sport that you really like.", youShouldSay: ["What it is", "How often you do it", "How you learned to do it", "And explain why you like it"] }, part3: { questions: ["Is sports important for children?", "How can we make children aware of the importance of sports?"] } },
-                { id: "objectsKeep4", title: "有用的发明", batch: "keep", part2: { instruction: "Describe an invention that is useful in your daily life.", youShouldSay: ["What the invention is", "What it can do", "How popular it is", "Whether it is difficult or easy to use", "And explain why it is useful"] }, part3: { questions: ["What qualities do inventors have?", "Do you think only scientists can invent new things?", "What inventions do you think should be improved?", "Are there any other inventions that make the world better?", "Do all inventions bring benefits to our world?", "Who should support and sponsor inventors, governments, or private companies?"] } },
-                { id: "objectsKeep5", title: "传统产品", batch: "keep", part2: { instruction: "Describe a traditional product in your country.", youShouldSay: ["What it is", "When you tried this product for the first time", "What it is made of", "And explain how you feel about it"] }, part3: { questions: ["Why are traditional products important?", "Do you think traditions are important for a country? Why?", "What are some traditional Chinese products?", "Why is it important for children to learn about traditional products?", "Do you think people should be proud of their own culture? Why?", "Where should children learn about culture, at school or at home?"] } },
-                { id: "objectsKeep6", title: "有趣的歌曲", batch: "keep", part2: { instruction: "Describe an interesting song.", youShouldSay: ["What the song is", "What story the song tells", "Whether the song is popular", "And explain why you think it is interesting"] }, part3: { questions: ["Why are many music competitions popular in China?", "What kinds of music do young people like?", "What kinds of people like traditional music?", "What are the differences between live concert and online concert?", "Do you like to watch music TV programs? Why?", "Are foreign songs popular in your country?"] } },
-                { id: "objectsKeep7", title: "生活中离不开的东西", batch: "keep", part2: { instruction: "Describe something that you can't live without (not a computer/phone).", youShouldSay: ["What it is", "What you do with it", "How it helps you in your life", "And explain why you can't live without it"] }, part3: { questions: ["Why are children attracted to new things (such as electronics)?", "Why do some grown-ups hate to throw out old things (such as clothes)?", "Is the way people buy things affected? How?", "What do you think influences people to buy new things?", "Why do all children like toys?", "Do you think it is good for a child to always take his or her favourite toy with them all the time?"] } },
-                { id: "objectsKeep8", title: "别人给你的衣服", batch: "keep", part2: { instruction: "Describe an item of clothing that someone gave you.", youShouldSay: ["What the clothing was", "Who gave it to you", "When you got it", "And explain why this person gave you the clothing"] }, part3: { questions: ["Why do people from different countries wear different clothing?", "What are the advantages and disadvantages of wearing uniforms at work and school?", "Why do people dress casually in everyday life but dress formally at work?", "Have you ever given clothes to others?", "What are the advantages and disadvantages of wearing a uniform at school?", "What influences the way people dress in today's society?"] } },
-                { id: "objectsKeep9", title: "收到特殊蛋糕", batch: "keep", part2: { instruction: "Describe a special cake you received from others.", youShouldSay: ["When it happened", "Where it happened", "Who you got the cake from", "And explain why it's a special cake"] }, part3: { questions: ["Do you think it's good to communicate when eating with your family?", "Why are some people willing to spend a lot of money on meals on special days?", "Is there any food in your country that is eaten at special times or on special occasions?", "What are the differences between special food in China and other countries?", "In your country, do people nowadays cook at home as frequently as people did in the past?", "What do you think of people using their mobile phones during a meal?"] } },
-                { id: "objectsKeep10", title: "童年喜欢的玩具", batch: "keep", part2: { instruction: "Describe a toy you liked in your childhood.", youShouldSay: ["What kind of toy it is", "When you received it", "How you played it", "And how you felt about it"] }, part3: { questions: ["How do advertisements influence children?", "Should advertising aimed at kids be prohibited?", "What's the difference between the toys kids play now and those they played in the past?", "Do you think parents should buy more toys for their kids or spend more time with them?", "What's the difference between the toys boys play with and girls play with?", "What are the advantages and disadvantages of modern toys?"] } },
-                { id: "objectsKeep11", title: "坏掉又修好的东西", batch: "keep", part2: { instruction: "Describe something that was broken in your home and then repaired.", youShouldSay: ["What it is", "How it was broken", "How you got it repaired", "And how you felt about it"] }, part3: { questions: ["Are IT-related jobs valued more by society?", "Is the quality of products worse than before?", "What kinds of things do people like to repair by themselves?", "Why do people like to get their mobile phones repaired in specialized stores?", "Do you think luxury products are of better quality?", "What kinds of things are easily repaired?"] } },
-                { id: "objectsKeep12", title: "送朋友的礼物", batch: "keep", part2: { instruction: "Describe a gift you would like to buy for your friend.", youShouldSay: ["How you knew your friend", "How long you have known him/her", "How you would choose a gift for him/her", "And explain why you would choose that gift for him/her"] }, part3: { questions: ["When do people normally send gifts to others?", "Is it hard to choose a gift?", "Will people feel happy when receiving an expensive gift?", "Which do people give on traditional festivals, red envelopes or other kinds of gifts?", "What do people usually consider when buying gifts?", "Are there any unlucky things that people should not buy as gifts in your country?"] } },
-                { id: "objectsKeep13", title: "免费物品", batch: "keep", part2: { instruction: "Describe something you received for free.", youShouldSay: ["What it was", "Who you received it from", "Where you received it", "And how you felt about it"] }, part3: { questions: ["Why do companies give free things to people?", "Do you think people like free things?", "What kind of free things do companies usually give?", "Do you think people value free things less than things they pay for?"] } },
-                { id: "objectsKeep14", title: "改变世界的发明", batch: "keep", part2: { instruction: "Describe an invention that has changed the world in a positive way.", youShouldSay: ["What it is", "What benefits it has brought", "How it influences people of different ages", "And explain how it changed people's lives"] }, part3: { questions: ["What is the most helpful innovation at home?", "What household appliances make us lazy?", "What kinds of inventions can be used at school?", "Do you think AI will replace human teachers? Why?"] } }
-            ],
-
-            // ----- Part 2&3 保留题 (地点类) 暖黄色 - 根据您的要求调整 -----
-            placesKeep: [
-                { id: "placesKeep1", title: "想去的多树之地", batch: "keep", part2: { instruction: "Describe a place with a lot of trees that you would like to visit.", youShouldSay: ["Where it is", "How you knew this place", "What it is like", "And explain why you would like to visit it"] }, part3: { questions: ["Why do people like visiting places with trees or forests?", "Are natural views better than city views?", "Do all people need some nature?", "Are people hard-wired to protect environment?"] } },
-                { id: "placesKeep2", title: "想去的外国", batch: "keep", part2: { instruction: "Describe a foreign country you would like to visit in the future.", youShouldSay: ["What it is", "What you have known about it", "Who you would like to go there with", "And explain why you would like to visit it"] }, part3: { questions: ["What do you think of national identity?", "What are the advantages of working in an international company?", "How does travelling abroad affect young people?", "How do people get information about other countries?", "Do you think reading is a good way to get to know other countries? Why?", "What do you think makes countries different?"] } },
-                { id: "placesKeep3", title: "文化之地", batch: "keep", part2: { instruction: "Describe a cultural place that you would like to learn the culture there.", youShouldSay: ["Where it is", "How you knew this place", "What it is like", "And explain how the place is related to culture"] }, part3: { questions: ["How does the internet affect culture?", "How is a culture formed?", "What kind of culture is popular among young people?", "How do young people learn about different cultures?", "Which is more important in terms of culture, literature or music?", "Does the culture of the past have an impact on today's culture?"] } },
-                { id: "placesKeep4", title: "拥挤地方", batch: "keep", part2: { instruction: "Describe a crowded place you went to.", youShouldSay: ["Where it was", "When you went there", "Who you went there with", "What you did there", "And how you felt about it"] }, part3: { questions: ["Which cities are overcrowded in your country?", "Will there be more or less green space in cities in the future?", "Will people use bikes more or less in cities in the future?", "Why do people go to crowded places?", "Do you think there are some people who enjoy crowded places?", "Do you think it is a good trend to have more big cities?"] } },
-                { id: "placesKeep5", title: "理想房屋", batch: "keep", part2: { instruction: "Describe an ideal and perfect place where you would like to stay.", youShouldSay: ["Where it would be", "What it would look like", "What special features it would have", "Whether it would be big or small", "And explain why it would be an ideal place for you"] }, part3: { questions: ["What are apartments like in your country?", "Why are apartments popular in some places while not in other places?", "What would people normally consider when they rent or buy a house or an apartment?", "Do different people have different preferences for houses or apartments?", "Why do some people choose to live in the city center?", "What do you think buildings will be like in the future?"] } },
-                { id: "placesKeep6", title: "喜欢和亲友去的地方", batch: "keep", part2: { instruction: "Describe a place in your hometown/city that is different from other places and that you enjoy visiting with your parents/friends.", youShouldSay: ["Where it is", "What it is like", "What you often do there", "Who you often go there with", "And explain why you think it is different"] }, part3: { questions: ["What are the differences between big cities and small cities?", "Where do people in your hometown like to go?", "What are the differences between the places young people like to go and the places old people like to go?", "What do young people like to do in their leisure time?", "Do you think it is necessary to visit the same place many times?", "What factors attract people to go to visit other places other than their hometown?"] } },
-                { id: "placesKeep7", title: "公园/花园", batch: "keep", part2: { instruction: "Describe a public park or garden.", youShouldSay: ["Where it is", "What it is like", "How often you go there", "What you often do there", "And explain how you feel about it"] }, part3: { questions: ["Is it necessary to have public parks in cities?", "What facilities are needed in a park?", "What are the differences between a garden and a natural area?", "Why do people like to visit tourist attractions?", "What tourist attractions are popular in China?", "How can we encourage young people to go to parks more often?"] } },
-                { id: "placesKeep8", title: "别人房间", batch: "keep", part2: { instruction: "Describe someone else's room you enjoy spending time in.", youShouldSay: ["When you visited there", "Whose room it is", "What it is like", "What you can do in it", "And explain why you enjoy spending time there"] }, part3: { questions: ["Do you like to invite your friends to your home?", "Do most people visit other people's houses during the Spring Festival?", "Why do people often take gifts with them when they visit others' homes?", "What are the most enjoyable parts of having a meal together with your family?", "Who likes to stay at home more, young people or old people?", "Do you think old people will be able to keep up with the pace of technology in 50 years?"] } },
-                { id: "placesKeep9", title: "看到野生动物的地方", batch: "keep", part2: { instruction: "Describe a place you know where people can see a lot of wildlife.", youShouldSay: ["Where it is", "What kinds of wildlife people can see there", "Whether people like to go there", "And explain how you feel about it"] }, part3: { questions: ["Why are most children interested in wild animals?", "Should parents take their children to the zoo to see wild animals?", "Are wild animals easy to spot in your country?", "Are there many wildlife documentaries produced in your country?", "What impacts does only seeing wild animals in zoos have on children's understanding of these animals?", "Which is the better way to see wildlife, watching documentaries or going into the wild?"] } },
-                { id: "placesKeep10", title: "重要河流/湖泊", batch: "keep", part2: { instruction: "Describe an important river/lake in your country.", youShouldSay: ["Where it is located", "How big/long it is", "What it looks like", "And explain why it is important"] }, part3: { questions: ["How can rivers and lakes benefit local people?", "Do you think rivers and lakes attract tourists?", "How do rivers and lakes affect local tourism?", "Are rivers and lakes good for transport? Why?", "What are the popular water sports in your country?", "Are rivers and lakes important to a country?"] } },
-                { id: "placesKeep11", title: "一个去过的新地方", batch: "keep", part2: { instruction: "Describe a time you visited a new place.", youShouldSay: ["Where the new place is", "When you went there", "Why you went there", "And explain how you feel about the place"] }, part3: { questions: ["Which do you prefer, living in a city or only visiting it as a tourist?", "How do young children react when they go to school for the first time?", "Why do some people want to go to college far away from home?", "How do young and old people react differently to new things?", "Do you think it's important to get as much information as possible before going to a new place?", "Why do many people enjoy visiting a new place?"] } },
-                { id: "placesKeep12", title: "有趣/著名的城市", batch: "keep", part2: { instruction: "Describe a city that you think is very interesting/famous.", youShouldSay: ["Where it is", "What it is famous for", "How you knew this city", "And explain why you think it is very interesting/famous"] }, part3: { questions: ["What advantages can tourism bring to a city?", "Why do some young people like to live in cities?", "Do most elderly people live in the city or in the countryside?", "Do you think well-developed tourism will have negative effects on local people?", "What are the benefits of urbanization?", "Do you think the big cities in China today will become even larger in the future?"] } },
-                { id: "placesKeep13", title: "安静的地方", batch: "keep", part2: { instruction: "Describe a quiet place you like to go.", youShouldSay: ["Where it is", "How you knew it", "How often you go there", "What you do there", "And explain how you feel about the place"] }, part3: { questions: ["Is it easy to find quiet places in your country? Why?", "How do people spend their leisure time in your country?", "How does technology affect the way people spend their leisure time?", "Do you think only old people have time for leisure?", "Why do old people prefer to live in quiet places?", "Why are there more noises made at home now than in the past?"] } },
-                { id: "placesKeep14", title: "去过的乡村", batch: "keep", part2: { instruction: "Describe a countryside that you have been to.", youShouldSay: ["Where it is", "When and why you went there", "Who you went there with", "And explain how you felt about it"] }, part3: { questions: ["Do people in your country like to go hiking?", "Do most people prefer to live in big cities or in the countryside?", "Do people go to the countryside to travel or to live?", "What kind of people would like to stay in the countryside?", "What are the advantages and disadvantages of living in the countryside?", "What are the differences between the city and the countryside?"] } },
-                { id: "placesKeep15", title: "去过且推荐的宜居之地", batch: "keep", part2: { instruction: "Describe a place you have been to that you would recommend as a good place to live.", youShouldSay: ["Where it is", "When you went there", "What makes it a good place to live", "And explain why you would recommend it"] }, part3: { questions: ["Why do people move from one place to another?", "What should people prepare before they move to a different city?", "What kinds of place do people in your country prefer to live in?", "What are the benefits of living close to one's workplace?", "What factors make a city liveable?", "Why do many people choose to move to big cities?"] } }
-            ]
-        };
+        // 合并所有话题
+        const allTopics = [...oldPart1, ...part1Keep, ...part1New, ...peopleKeep, ...eventsKeep, ...objectsKeep, ...placesKeep, ...part2New];
 
         // ---------- 全局变量 ----------
         let currentPart = "part1";
@@ -1246,12 +804,28 @@
         let isTimerRunning = false;
         let isPart2Mode = false;
 
-        // ---------- 初始化页面 ----------
-        document.addEventListener('DOMContentLoaded', function() {
-            buildSidebar();
+        // ---------- 构建左侧导航 ----------
+        function buildSidebar() {
+            const nav = document.getElementById('categoryNav');
+            nav.innerHTML = `
+                <div class="category-group"><div class="category-header old">📜 万年老题 Part 1 (5组)</div><button class="category-btn old" data-category="old-part1"><span><i class="fas fa-history" style="margin-right: 8px;"></i>万年老题 Part 1</span><i class="fas fa-chevron-down icon"></i></button><div class="topic-list old" id="old-part1-topics"></div></div>
+                <div class="category-group"><div class="category-header keep">📋 Part 1 保留题 (17组)</div><button class="category-btn keep" data-category="part1-keep"><span><i class="fas fa-bookmark" style="margin-right: 8px;"></i>Part 1 保留题 (17组)</span><i class="fas fa-chevron-down icon"></i></button><div class="topic-list keep" id="part1-keep-topics"></div></div>
+                <div class="category-group"><div class="category-header new">✨ Part 1 新增题 (16组)</div><button class="category-btn new" data-category="part1-new"><span><i class="fas fa-star" style="color: #ffd700; margin-right: 8px;"></i>Part 1 新增题 (16组)</span><i class="fas fa-chevron-down icon"></i></button><div class="topic-list new" id="part1-new-topics"></div></div>
+                <div class="category-group"><div class="category-header keep">👤 Part 2&3 保留题 (26组)</div><button class="category-btn keep" data-category="p2-keep"><span><i class="fas fa-layer-group" style="margin-right: 8px;"></i>Part 2&3 保留题 (26组)</span><i class="fas fa-chevron-down icon"></i></button><div class="topic-list keep" id="p2-keep-topics"></div></div>
+                <div class="category-group"><div class="category-header new">🎯 Part 2&3 新增题 (24组)</div><button class="category-btn new" data-category="part2-new"><span><i class="fas fa-plus-circle" style="margin-right: 8px;"></i>Part 2&3 新增题 (24组)</span><i class="fas fa-chevron-down icon"></i></button><div class="topic-list new" id="part2-new-topics"></div></div>
+            `;
+            
+            fillTopicList('old-part1-topics', oldPart1, 'old');
+            fillTopicList('part1-keep-topics', part1Keep, 'keep');
+            fillTopicList('part1-new-topics', part1New, 'new');
+            
+            const p2KeepAll = [...peopleKeep, ...eventsKeep, ...objectsKeep, ...placesKeep];
+            fillTopicList('p2-keep-topics', p2KeepAll, 'keep');
+            fillTopicList('part2-new-topics', part2New, 'new');
+            
             setupEventListeners();
             
-            // 默认选中第一个话题（万年老题的第一个）
+            // 默认选中第一个话题
             setTimeout(() => {
                 const firstTopic = document.querySelector('#old-part1-topics .topic-item');
                 if (firstTopic) {
@@ -1260,139 +834,11 @@
                     findAndShowTopic(topicId);
                 }
             }, 100);
-        });
-
-        // ---------- 构建左侧导航 ----------
-        function buildSidebar() {
-            const nav = document.getElementById('categoryNav');
-            nav.innerHTML = `
-                <!-- 万年老题 Part 1 -->
-                <div class="category-group">
-                    <div class="category-header old">📜 万年老题 Part 1 (5组)</div>
-                    <button class="category-btn old" data-category="old-part1">
-                        <span><i class="fas fa-history" style="color: #9c6b3f; margin-right: 8px;"></i>万年老题 Part 1 (5组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list old" id="old-part1-topics"></div>
-                </div>
-                
-                <!-- Part 1 新增题 -->
-                <div class="category-group">
-                    <div class="category-header new">📋 Part 1 新增题 (17组)</div>
-                    <button class="category-btn new" data-category="part1-new">
-                        <span><i class="fas fa-star" style="color: #ffd700; margin-right: 8px;"></i>Part 1 新增题 (17组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list new" id="part1-new-topics"></div>
-                </div>
-                
-                <!-- Part 1 保留题 -->
-                <div class="category-group">
-                    <div class="category-header keep">📋 Part 1 保留题 (63组)</div>
-                    <button class="category-btn keep" data-category="part1-keep">
-                        <span><i class="fas fa-bookmark" style="color: #b08968; margin-right: 8px;"></i>Part 1 保留题 (63组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list keep" id="part1-keep-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 新增题 - 人物类 -->
-                <div class="category-group">
-                    <div class="category-header new">👤 Part 2&3 新增 · 人物类 (8组)</div>
-                    <button class="category-btn new" data-category="people-new">
-                        <span><i class="fas fa-user-plus" style="color: #0F6B6B; margin-right: 8px;"></i>人物类新题 (8组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list new" id="people-new-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 新增题 - 事件类 -->
-                <div class="category-group">
-                    <div class="category-header new">🎭 Part 2&3 新增 · 事件类 (9组)</div>
-                    <button class="category-btn new" data-category="events-new">
-                        <span><i class="fas fa-calendar-plus" style="color: #0F6B6B; margin-right: 8px;"></i>事件类新题 (9组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list new" id="events-new-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 新增题 - 物品类 -->
-                <div class="category-group">
-                    <div class="category-header new">📦 Part 2&3 新增 · 物品类 (6组)</div>
-                    <button class="category-btn new" data-category="objects-new">
-                        <span><i class="fas fa-cube" style="color: #0F6B6B; margin-right: 8px;"></i>物品类新题 (6组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list new" id="objects-new-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 新增题 - 地点类 -->
-                <div class="category-group">
-                    <div class="category-header new">📍 Part 2&3 新增 · 地点类 (3组)</div>
-                    <button class="category-btn new" data-category="places-new">
-                        <span><i class="fas fa-map-pin" style="color: #0F6B6B; margin-right: 8px;"></i>地点类新题 (3组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list new" id="places-new-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 保留题 - 人物类 -->
-                <div class="category-group">
-                    <div class="category-header keep">👥 Part 2&3 保留 · 人物类 (17组)</div>
-                    <button class="category-btn keep" data-category="people-keep">
-                        <span><i class="fas fa-user-friends" style="color: #b08968; margin-right: 8px;"></i>人物类保留 (17组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list keep" id="people-keep-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 保留题 - 事件类 -->
-                <div class="category-group">
-                    <div class="category-header keep">🎪 Part 2&3 保留 · 事件类 (43组)</div>
-                    <button class="category-btn keep" data-category="events-keep">
-                        <span><i class="fas fa-calendar-alt" style="color: #b08968; margin-right: 8px;"></i>事件类保留 (43组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list keep" id="events-keep-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 保留题 - 物品类 -->
-                <div class="category-group">
-                    <div class="category-header keep">🎁 Part 2&3 保留 · 物品类 (14组)</div>
-                    <button class="category-btn keep" data-category="objects-keep">
-                        <span><i class="fas fa-gift" style="color: #b08968; margin-right: 8px;"></i>物品类保留 (14组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list keep" id="objects-keep-topics"></div>
-                </div>
-                
-                <!-- Part 2&3 保留题 - 地点类 -->
-                <div class="category-group">
-                    <div class="category-header keep">🏞️ Part 2&3 保留 · 地点类 (15组)</div>
-                    <button class="category-btn keep" data-category="places-keep">
-                        <span><i class="fas fa-tree" style="color: #b08968; margin-right: 8px;"></i>地点类保留 (15组)</span>
-                        <i class="fas fa-chevron-down icon"></i>
-                    </button>
-                    <div class="topic-list keep" id="places-keep-topics"></div>
-                </div>
-            `;
-
-            // 填充所有题目
-            fillTopicList('old-part1-topics', topicsData.oldPart1, 'old');
-            fillTopicList('part1-new-topics', topicsData.part1New, 'new');
-            fillTopicList('part1-keep-topics', topicsData.part1Keep, 'keep');
-            fillTopicList('people-new-topics', topicsData.peopleNew, 'new');
-            fillTopicList('events-new-topics', topicsData.eventsNew, 'new');
-            fillTopicList('objects-new-topics', topicsData.objectsNew, 'new');
-            fillTopicList('places-new-topics', topicsData.placesNew, 'new');
-            fillTopicList('people-keep-topics', topicsData.peopleKeep, 'keep');
-            fillTopicList('events-keep-topics', topicsData.eventsKeep, 'keep');
-            fillTopicList('objects-keep-topics', topicsData.objectsKeep, 'keep');
-            fillTopicList('places-keep-topics', topicsData.placesKeep, 'keep');
         }
 
         function fillTopicList(listId, topics, type) {
             const list = document.getElementById(listId);
+            if (!list) return;
             topics.forEach(topic => {
                 const item = document.createElement('div');
                 item.className = `topic-item ${type}`;
@@ -1403,14 +849,12 @@
         }
 
         function setupEventListeners() {
-            // 分类按钮点击折叠
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const category = this.getAttribute('data-category');
                     const targetList = document.getElementById(`${category}-topics`);
                     const icon = this.querySelector('.fa-chevron-down, .fa-chevron-up');
-                    
                     if (targetList.classList.contains('active')) {
                         targetList.classList.remove('active');
                         if (icon) icon.className = 'fas fa-chevron-down icon';
@@ -1421,7 +865,6 @@
                 });
             });
 
-            // 话题点击
             document.querySelectorAll('.topic-item').forEach(item => {
                 item.addEventListener('click', function() {
                     document.querySelectorAll('.topic-item').forEach(t => t.classList.remove('active'));
@@ -1431,36 +874,30 @@
                 });
             });
 
-            // Part切换
             document.querySelectorAll('.part-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const part = this.getAttribute('data-part');
                     document.querySelectorAll('.part-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentPart = part;
-                    
                     if (currentTopic) {
                         if (part === 'part1' && currentTopic.part1) showPart1(currentTopic);
                         else if (part === 'part2' && currentTopic.part2) showPart2(currentTopic);
                         else if (part === 'part3' && currentTopic.part3) showPart3(currentTopic);
                     }
-                    
                     resetTimerForPart();
                 });
             });
 
-            // 计时器
             document.getElementById('start-timer').addEventListener('click', toggleTimer);
             document.getElementById('reset-timer').addEventListener('click', resetTimer);
             
-            // 搜索
             document.getElementById('searchInput').addEventListener('input', function(e) {
                 const keyword = e.target.value.toLowerCase().trim();
                 document.querySelectorAll('.topic-item').forEach(item => {
                     const title = item.textContent.toLowerCase();
                     if (keyword === '' || title.includes(keyword)) {
                         item.style.display = 'block';
-                        // 展开父级
                         const parentList = item.closest('.topic-list');
                         if (parentList && keyword !== '') {
                             parentList.classList.add('active');
@@ -1478,19 +915,11 @@
         }
 
         function findAndShowTopic(topicId) {
-            const allTopics = [
-                ...topicsData.oldPart1, ...topicsData.part1New, ...topicsData.part1Keep,
-                ...topicsData.peopleNew, ...topicsData.eventsNew, ...topicsData.objectsNew, ...topicsData.placesNew,
-                ...topicsData.peopleKeep, ...topicsData.eventsKeep, ...topicsData.objectsKeep, ...topicsData.placesKeep
-            ];
             const topic = allTopics.find(t => t.id === topicId);
             if (topic) {
                 currentTopic = topic;
-                
-                // 更新header和badge
                 const cardHeader = document.getElementById('card-header');
                 const topicBadge = document.getElementById('topic-badge');
-                
                 cardHeader.className = 'card-header';
                 if (topic.batch === 'new') {
                     cardHeader.classList.add('new');
@@ -1506,63 +935,36 @@
                     topicBadge.textContent = '万年老题';
                 }
                 
-                // 根据当前part显示内容
                 if (currentPart === 'part1' && topic.part1) showPart1(topic);
                 else if (currentPart === 'part2' && topic.part2) showPart2(topic);
                 else if (currentPart === 'part3' && topic.part3) showPart3(topic);
                 else {
-                    // 自动切换到有内容的part
                     if (topic.part1) document.querySelector('.part-btn[data-part="part1"]').click();
                     else if (topic.part2) document.querySelector('.part-btn[data-part="part2"]').click();
                     else if (topic.part3) document.querySelector('.part-btn[data-part="part3"]').click();
                 }
-                
                 resetTimerForPart();
             }
         }
 
         function showPart1(topic) {
             const content = document.getElementById('card-content');
-            content.innerHTML = `
-                <div class="topic-title ${topic.batch}">${topic.title}</div>
-                <div class="task-instruction ${topic.batch}">Answer the following questions:</div>
-                <div class="question-list ${topic.batch}">
-                    ${topic.part1.questions.map((q, i) => `<div class="question-item ${topic.batch}"><strong>${i+1}.</strong> ${q}</div>`).join('')}
-                </div>
-            `;
+            content.innerHTML = `<div class="topic-title ${topic.batch}">${topic.title}</div><div class="task-instruction ${topic.batch}">Answer the following questions:</div><div class="question-list ${topic.batch}">${topic.part1.questions.map((q, i) => `<div class="question-item ${topic.batch}"><strong>${i+1}.</strong> ${q}</div>`).join('')}</div>`;
         }
 
         function showPart2(topic) {
             const content = document.getElementById('card-content');
-            content.innerHTML = `
-                <div class="topic-title ${topic.batch}">${topic.title}</div>
-                <div class="task-instruction ${topic.batch}">${topic.part2.instruction}</div>
-                <div class="card-item ${topic.batch}">
-                    <h3>You should say:</h3>
-                    <ul>
-                        ${topic.part2.youShouldSay.map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
+            content.innerHTML = `<div class="topic-title ${topic.batch}">${topic.title}</div><div class="task-instruction ${topic.batch}">${topic.part2.instruction}</div><div class="card-item ${topic.batch}"><h3>You should say:</h3><ul>${topic.part2.youShouldSay.map(item => `<li>${item}</li>`).join('')}</ul></div>`;
         }
 
         function showPart3(topic) {
             const content = document.getElementById('card-content');
-            content.innerHTML = `
-                <div class="topic-title ${topic.batch}">${topic.title}</div>
-                <div class="task-instruction ${topic.batch}">Answer the follow-up questions:</div>
-                <div class="part3-section ${topic.batch}">
-                    <ul>
-                        ${topic.part3.questions.map((q, i) => `<li><strong>${i+1}.</strong> ${q}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
+            content.innerHTML = `<div class="topic-title ${topic.batch}">${topic.title}</div><div class="task-instruction ${topic.batch}">Answer the follow-up questions:</div><div class="part3-section ${topic.batch}"><ul>${topic.part3.questions.map((q, i) => `<li><strong>${i+1}.</strong> ${q}</li>`).join('')}</ul></div>`;
         }
 
         function resetTimerForPart() {
             clearInterval(timerInterval);
             isTimerRunning = false;
-            
             if (currentPart === 'part2') {
                 timerSeconds = 60;
                 document.getElementById('timer').textContent = '01:00';
@@ -1574,7 +976,6 @@
                 document.getElementById('timer-label').textContent = '答题时间';
                 isPart2Mode = false;
             }
-            
             document.getElementById('start-timer').innerHTML = '<i class="fas fa-play-circle"></i> 开始';
         }
 
@@ -1592,41 +993,29 @@
             } else {
                 isTimerRunning = true;
                 document.getElementById('start-timer').innerHTML = '<i class="fas fa-pause-circle"></i> 暂停';
-                
                 timerInterval = setInterval(() => {
                     if (currentPart === 'part2' && isPart2Mode) {
-                        // Part 2 准备阶段：倒计时
-                        if (timerSeconds > 0) {
-                            timerSeconds--;
-                        }
+                        if (timerSeconds > 0) timerSeconds--;
                         if (timerSeconds === 0) {
-                            // 准备时间结束，切换到答题时间（2分钟）
                             isPart2Mode = false;
-                            timerSeconds = 0;
                             document.getElementById('timer-label').textContent = '答题时间';
                         }
                     } else {
-                        // 答题阶段：正计时
                         timerSeconds++;
-                        
-                        // Part 2 答题时间满2分钟时显示提示
                         if (currentPart === 'part2' && timerSeconds === 120) {
-                            // 可选：添加提示效果，但不改变计时
                             const timerDisplay = document.getElementById('timer');
                             timerDisplay.style.color = '#ff6b6b';
-                            setTimeout(() => {
-                                timerDisplay.style.color = '';
-                            }, 500);
+                            setTimeout(() => { timerDisplay.style.color = ''; }, 500);
                         }
                     }
-                    
                     const mins = Math.floor(timerSeconds / 60);
                     const secs = timerSeconds % 60;
-                    document.getElementById('timer').textContent = 
-                        `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                    document.getElementById('timer').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
                 }, 1000);
             }
         }
+
+        document.addEventListener('DOMContentLoaded', buildSidebar);
     </script>
 </body>
 </html>
